@@ -1,4 +1,4 @@
 {
-  "$schema": "https://inlang.com/schema/inlang-message-format",
-  "greeting": "Hello {name}!"
+	"$schema": "https://inlang.com/schema/inlang-message-format",
+	"home.oneliner": "Create magical personalized stories turning any moment into an unforgettable adventure"
 }
