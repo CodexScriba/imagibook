@@ -1,3 +1,5 @@
+import { LanguageProvider } from "@inlang/paraglide-next"
+import { languageTag } from "@/paraglide/runtime.js"
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
@@ -21,7 +23,8 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en" suppressHydrationWarning>
+		<LanguageProvider>
+   <html lang={languageTag()} suppressHydrationWarning>
 			<body className={poppins.className}>
 				<ThemeProvider
 					attribute="class"
@@ -33,5 +36,6 @@ export default function RootLayout({
 				</ThemeProvider>
 			</body>
 		</html>
+ </LanguageProvider>
 	);
 }

@@ -1,0 +1,5 @@
+{
+	"$schema": "https://inlang.com/schema/inlang-message-format",
+	"greeting": "Hola, bienvenido a nuestra aplicación!",
+	"testMessage": "Este es un mensaje de prueba."
+}

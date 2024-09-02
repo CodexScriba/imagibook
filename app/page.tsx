@@ -1,5 +1,10 @@
-import Image from "next/image";
+import * as m from "@/paraglide/messages";
 
 export default function Home() {
-	return <div className="bg-background">testing app</div>;
+	return (
+		<div className="bg-background">
+			<h1>{m.greeting()}</h1>
+			<p>{m.testMessage()}</p>
+		</div>
+	);
 }
