@@ -1,6 +1,5 @@
-import type { Config } from "tailwindcss";
-
-const config: Config = {
+/** @type {import('tailwindcss').Config} */
+const config = {
 	darkMode: ["class"], // Enable dark mode with a class
 	content: [
 		"./pages/**/*.{ts,tsx}",
@@ -18,44 +17,44 @@ const config: Config = {
 		},
 		extend: {
 			colors: {
-				border: "hsl(var(--border))", // Border color
-				input: "hsl(var(--input))", // Input background
-				ring: "hsl(var(--ring))", // Focus ring color
-				background: "hsl(var(--background))", // Background color
-				foreground: "hsl(var(--foreground))", // Foreground (text) color
+				border: "hsl(var(--border))",
+				input: "hsl(var(--input))",
+				ring: "hsl(var(--ring))",
+				background: "hsl(var(--background))",
+				foreground: "hsl(var(--foreground))",
 				primary: {
-					DEFAULT: "hsl(var(--primary))", // Primary color
-					foreground: "hsl(var(--primary-foreground))", // Primary text color
+					DEFAULT: "hsl(var(--primary))",
+					foreground: "hsl(var(--primary-foreground))",
 				},
 				secondary: {
-					DEFAULT: "hsl(var(--secondary))", // Secondary color
-					foreground: "hsl(var(--secondary-foreground))", // Secondary text color
+					DEFAULT: "hsl(var(--secondary))",
+					foreground: "hsl(var(--secondary-foreground))",
 				},
 				destructive: {
-					DEFAULT: "hsl(var(--destructive))", // Destructive (error) color
-					foreground: "hsl(var(--destructive-foreground))", // Destructive text color
+					DEFAULT: "hsl(var(--destructive))",
+					foreground: "hsl(var(--destructive-foreground))",
 				},
 				muted: {
-					DEFAULT: "hsl(var(--muted))", // Muted color (used for less prominent text)
-					foreground: "hsl(var(--muted-foreground))", // Muted text color
+					DEFAULT: "hsl(var(--muted))",
+					foreground: "hsl(var(--muted-foreground))",
 				},
 				accent: {
-					DEFAULT: "hsl(var(--accent))", // Accent color
-					foreground: "hsl(var(--accent-foreground))", // Accent text color
+					DEFAULT: "hsl(var(--accent))",
+					foreground: "hsl(var(--accent-foreground))",
 				},
 				popover: {
-					DEFAULT: "hsl(var(--popover))", // Popover background color
-					foreground: "hsl(var(--popover-foreground))", // Popover text color
+					DEFAULT: "hsl(var(--popover))",
+					foreground: "hsl(var(--popover-foreground))",
 				},
 				card: {
-					DEFAULT: "hsl(var(--card))", // Card background color
-					foreground: "hsl(var(--card-foreground))", // Card text color
+					DEFAULT: "hsl(var(--card))",
+					foreground: "hsl(var(--card-foreground))",
 				},
 			},
 			borderRadius: {
-				lg: "var(--radius)", // Large border radius
-				md: "calc(var(--radius) - 2px)", // Medium border radius
-				sm: "calc(var(--radius) - 4px)", // Small border radius
+				lg: "var(--radius)",
+				md: "calc(var(--radius) - 2px)",
+				sm: "calc(var(--radius) - 4px)",
 			},
 			keyframes: {
 				"accordion-down": {
@@ -76,4 +75,4 @@ const config: Config = {
 	plugins: [require("tailwindcss-animate")], // Ensure you have the animate plugin installed
 };
 
-export default config;
+module.exports = config;
