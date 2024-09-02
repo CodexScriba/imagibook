@@ -2,61 +2,80 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
 @layer base {
   :root {
-    --background: 220 90% 97%; /* #F0F4FF Light blue-tinted for backgrounds */
-    --foreground: 0 0% 20%; /* #333333 Dark gray for primary text */
-    --card: 220 38% 98%; /* #F7F9FC Soft off-white for cards and content areas */
-    --card-foreground: 0 0% 20%; /* #333333 Dark gray for card text */
-    --popover: 220 38% 98%; /* #F7F9FC Soft off-white for popovers */
-    --popover-foreground: 0 0% 20%; /* #333333 Dark gray for popover text */
-    --primary: 258 100% 63%; /* #8A4FFF Dreamy purple for primary actions and branding */
-    --primary-foreground: 0 0% 100%; /* #FFFFFF White for primary action text */
-    --secondary: 210 80% 70%; /* #4F9BFF Starry blue for secondary elements */
-    --secondary-foreground: 0 0% 100%; /* #FFFFFF White for secondary action text */
-    --accent: 48 100% 67%; /* #FFD54F Sunny yellow for highlights and accents */
-    --accent-foreground: 0 0% 20%; /* #333333 Dark gray for accent text */
-    --muted: 0 0% 46%; /* #757575 Medium gray for secondary text */
-    --muted-foreground: 0 0% 100%; /* #FFFFFF White for muted text in dark backgrounds */
-    --destructive: 0 100% 68%; /* #FF5252 Red for error states and critical actions */
-    --destructive-foreground: 0 0% 100%; /* #FFFFFF White for destructive action text */
-    --border: 214 31.8% 91.4%; /* #E0E0E0 Light gray for borders */
-    --input: 214 31.8% 91.4%; /* #E0E0E0 Light gray for input backgrounds */
-    --ring: 258 100% 63%; /* #8A4FFF Dreamy purple for focus rings */
+    --background: 220 60% 97%; /* #F0F4FF  Light blue-tinted for backgrounds */
+    --foreground: 0 0% 20%; /* #333333  Dark gray for primary text */
+    --card: 220 38% 98%; /* #F7F9FC  Soft off-white for cards and content areas */
+    --card-foreground: 0 0% 20%; /* #333333  Dark gray for card text */
+    --popover: 220 38% 98%; /* #F7F9FC  Soft off-white for popovers */
+    --popover-foreground: 0 0% 20%; /* #333333  Dark gray for popover text */
+    --primary: 258 100% 63%; /* #8A4FFF  Dreamy purple for primary actions and branding */
+    --primary-foreground: 0 0% 100%; /* #FFFFFF  White for primary action text */
+    --secondary: 210 80% 70%; /* #4F9BFF  Starry blue for secondary elements */
+    --secondary-foreground: 0 0% 100%; /* #FFFFFF  White for secondary action text */
+    --accent: 48 100% 67%; /* #FFD54F  Sunny yellow for highlights and accents */
+    --accent-foreground: 0 0% 20%; /* #333333  Dark gray for accent text */
+    --muted: 0 0% 46%; /* #757575  Medium gray for secondary text */
+    --muted-foreground: 0 0% 100%; /* #FFFFFF  White for muted text in dark backgrounds */
+    --destructive: 0 100% 68%; /* #FF5252  Red for error states and critical actions */
+    --destructive-foreground: 0 0% 100%; /* #FFFFFF  White for destructive action text */
+    --border: 214 31.8% 91.4%; /* #E0E0E0  Light gray for borders */
+    --input: 214 31.8% 91.4%; /* #E0E0E0  Light gray for input backgrounds */
+    --ring: 258 100% 63%; /* #8A4FFF  Dreamy purple for focus rings */
+    --chart-1: 48 100% 67%; /* #FFD54F  Chart color 1 */
+    --chart-2: 173 58% 39%; /* #4CAF50  Chart color 2 */
+    --chart-3: 197 37% 24%; /* #66BB6A  Chart color 3 */
+    --chart-4: 43 74% 66%; /* #FFA000  Chart color 4 */
+    --chart-5: 27 87% 67%; /* #FF5252  Chart color 5 */
     --radius: 0.5rem;
-    --chart-1: 48 100% 67%; /* #FFD54F Chart color 1 */
-    --chart-2: 173 58% 39%; /* #4CAF50 Chart color 2 */
-    --chart-3: 197 37% 24%; /* #66BB6A Chart color 3 */
-    --chart-4: 43 74% 66%; /* #FFA000 Chart color 4 */
-    --chart-5: 27 87% 67%; /* #FF5252 Chart color 5 */
   }
-
   .dark {
-    --background: 0 0% 16%; /* #2A2A2A Very dark gray for backgrounds */
-    --foreground: 0 0% 88%; /* #E0E0E0 Soft white for primary text */
-    --card: 0 0% 18%; /* #2E2E2E Slightly lighter dark gray for cards and content areas */
-    --card-foreground: 0 0% 88%; /* #E0E0E0 Soft white for card text */
-    --popover: 0 0% 18%; /* #2E2E2E Slightly lighter dark gray for popovers */
-    --popover-foreground: 0 0% 88%; /* #E0E0E0 Soft white for popover text */
-    --primary: 258 100% 73%; /* #9D6FFF Lighter dreamy purple for primary actions */
-    --primary-foreground: 0 0% 100%; /* #FFFFFF White for primary action text */
-    --secondary: 210 80% 80%; /* #6EAFFF Lighter starry blue for secondary elements */
-    --secondary-foreground: 0 0% 100%; /* #FFFFFF White for secondary action text */
-    --accent: 48 100% 80%; /* #FFE17F Softer sunny yellow for highlights */
-    --accent-foreground: 0 0% 20%; /* #333333 Dark gray for accent text */
-    --muted: 0 0% 63%; /* #A0A0A0 Medium gray for secondary text */
-    --muted-foreground: 0 0% 88%; /* #E0E0E0 Soft white for muted text */
-    --destructive: 0 100% 71%; /* #FF6B6B Softer red for error states */
-    --destructive-foreground: 0 0% 100%; /* #FFFFFF White for destructive action text */
-    --border: 0 0% 18%; /* #2E2E2E Slightly lighter dark gray for borders */
-    --input: 0 0% 18%; /* #2E2E2E Slightly lighter dark gray for input backgrounds */
-    --ring: 258 100% 73%; /* #9D6FFF Lighter dreamy purple for focus rings */
+    --background: 220 60% 97%; /* #F0F4FF  Light blue-tinted for backgrounds */
+    --foreground: 0 0% 20%; /* #333333  Dark gray for primary text */
+    --card: 220 38% 98%; /* #F7F9FC  Soft off-white for cards and content areas */
+    --card-foreground: 0 0% 20%; /* #333333  Dark gray for card text */
+    --popover: 220 38% 98%; /* #F7F9FC  Soft off-white for popovers */
+    --popover-foreground: 0 0% 20%; /* #333333  Dark gray for popover text */
+    --primary: 258 100% 63%; /* #8A4FFF  Dreamy purple for primary actions and branding */
+    --primary-foreground: 0 0% 100%; /* #FFFFFF  White for primary action text */
+    --secondary: 210 80% 70%; /* #4F9BFF  Starry blue for secondary elements */
+    --secondary-foreground: 0 0% 100%; /* #FFFFFF  White for secondary action text */
+    --accent: 48 100% 67%; /* #FFD54F  Sunny yellow for highlights and accents */
+    --accent-foreground: 0 0% 20%; /* #333333  Dark gray for accent text */
+    --muted: 0 0% 46%; /* #757575  Medium gray for secondary text */
+    --muted-foreground: 0 0% 100%; /* #FFFFFF  White for muted text in dark backgrounds */
+    --destructive: 0 100% 68%; /* #FF5252  Red for error states and critical actions */
+    --destructive-foreground: 0 0% 100%; /* #FFFFFF  White for destructive action text */
+    --border: 214 31.8% 91.4%; /* #E0E0E0  Light gray for borders */
+    --input: 214 31.8% 91.4%; /* #E0E0E0  Light gray for input backgrounds */
+    --ring: 258 100% 63%; /* #8A4FFF  Dreamy purple for focus rings */
     --radius: 0.5rem;
-    --chart-1: 48 100% 67%; /* #FFD54F Chart color 1 */
-    --chart-2: 173 58% 39%; /* #4CAF50 Chart color 2 */
-    --chart-3: 197 37% 24%; /* #66BB6A Chart color 3 */
-    --chart-4: 43 74% 66%; /* #FFA000 Chart color 4 */
-    --chart-5: 27 87% 67%; /* #FF5252 Chart color 5 */
+    --chart-1: 48 100% 67%; /* #FFD54F  Chart color 1 */
+    --chart-2: 173 58% 39%; /* #4CAF50  Chart color 2 */
+    --chart-3: 197 37% 24%; /* #66BB6A  Chart color 3 */
+    --chart-4: 43 74% 66%; /* #FFA000  Chart color 4 */
+    --chart-5: 27 87% 67%; /* #FF5252  Chart color 5 */
   }
 }
 
@@ -65,7 +84,7 @@
     border-color: var(--border);
   }
   body {
-    background-color: hsl(var(--background));
-    color: hsl(var(--foreground));
+    background-color: var(--background);
+    color: var(--foreground);
   }
 }
