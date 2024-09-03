@@ -1,24 +1,31 @@
 //app/components/Navbar/DesktopNavbar.tsx
+import React from 'react';
+import NavLink from './NavLink';
+import * as m from "@/paraglide/messages"
 
-import Logo from "./Logo";
-import NavLink from './Navlink'; // Updated import
 
 const DesktopNavbar: React.FC = () => {
-    return (
-        <nav className="bg-transparent h-14 w-full">
-            <div className="max-w-[1280px] mx-auto h-full px-4 flex items-center justify-between">
-                <div>
-                    <Logo />
-                </div>
-                <div>
-                    {/* Example of a Link with i18n */}
-                    <Link href="/about">
-                        About
-                    </Link>
-                </div>
-            </div>
-        </nav>
-    );
+  const navItems = [
+    { href: '/', label: m.navbar.home(), prefetch: true },
+    { href: '/how-it-works', label: m.navbar.howItWorks(), prefetch: true },
+    { href: '/pricing', label: m.navbar.pricing(), prefetch: true },
+    { href: '/book-creation', label: m.navbar.bookCreation(), prefetch: false },
+    { href: '/library', label: m.navbar.library(), prefetch: false },
+    { href: '/about-us', label: m.navbar.aboutUs(), prefetch: false },
+  ];
+
+  return (
+    <div className="hidden space-x-4 md:flex">
+      {navItems.map((item) => (
+        <NavLink 
+          key={item.href} 
+          href={item.href} 
+          label={item.label} 
+          prefetch={item.prefetch}
+        />
+      ))}
+    </div>
+  );
 };
 
 export default DesktopNavbar;

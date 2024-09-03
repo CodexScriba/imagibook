@@ -1,11 +1,13 @@
 {
-    "$schema": "https://inlang.com/schema/inlang-message-format",
-    "greeting": "Hello, welcome to our app!",
-    "testMessage": "This is a test message.",
-    "navbar.home": "Home",
-    "navbar.howItWorks": "How it works?", 
-    "navbar.pricing": "Pricing",
-    "navbar.bookCreation": "Book Creation",
-    "navbar.library": "Library",
-    "navbar.aboutUs": "About Us"
+	"$schema": "https://inlang.com/schema/inlang-message-format",
+	"greeting": "Hello, welcome to our app!",
+	"greeting1": "Test",
+	"test_greeting": "underscore test",
+	"testMessage": "This is a test message.",
+	"navbar.pricing": "Pricing",
+	"navbar.bookCreation": "Book Creation",
+	"navbar.library": "Library",
+	"navbar.aboutUs": "About Us",
+	"navbarHome": "Home",
+	"navbarHowItWorks": "How it works?"
 }
