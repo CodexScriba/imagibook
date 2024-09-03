@@ -12,8 +12,8 @@ const Logo: React.FC<LogoProps> = ({ className = '' }) => {
       <Image 
         src="/images/logo/logoDesktop.png"
         alt="Imagibook Logo"
-        width={120}  // Adjust based on your logo's dimensions
-        height={40}  // Adjust based on your logo's dimensions
+        width={60}  // Adjust based on your logo's dimensions
+        height={20}  // Adjust based on your logo's dimensions
         priority
       />
     </Link>

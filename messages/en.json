@@ -1,5 +1,11 @@
 {
-	"$schema": "https://inlang.com/schema/inlang-message-format",
-	"greeting": "Hello, welcome to our app!",
-	"testMessage": "This is a test message."
+    "$schema": "https://inlang.com/schema/inlang-message-format",
+    "greeting": "Hello, welcome to our app!",
+    "testMessage": "This is a test message.",
+    "navbar.home": "Home",
+    "navbar.howItWorks": "How it works?", 
+    "navbar.pricing": "Pricing",
+    "navbar.bookCreation": "Book Creation",
+    "navbar.library": "Library",
+    "navbar.aboutUs": "About Us"
 }

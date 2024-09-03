@@ -1,21 +1,19 @@
 // src/lib/i18n.ts
-import type { AvailableLanguageTag } from "@/paraglide/runtime";
-import { PrefixStrategy, Navigation, Middleware } from "@inlang/paraglide-next";
+import { createI18n } from "@inlang/paraglide-js-adapter-next"
+import type { AvailableLanguageTag } from "@/paraglide/runtime"
 
-const strategy = PrefixStrategy<AvailableLanguageTag>({ prefixDefault: "never" });
-
-export const { Link, useRouter, usePathname, redirect, permanentRedirect } = Navigation({ 
-    strategy,
-    pathnames: {
-        "/": {
-            en: "/", 
-            es: "/", 
+export const { Link, middleware, useRouter, usePathname, redirect, permanentRedirect, localizePath } =
+    createI18n<AvailableLanguageTag>({
+        pathnames: {
+            "/": {
+                en: "/",
+                es: "/",
+            },
+            "/about": {
+                en: "/about",
+                es: "/acerca",
+            },
+            // Add more routes as needed
         },
-        "/about": {
-            en: "/about",  
-            es: "/acerca", 
-        },
-    }
-});
-
-export const middleware = Middleware({ strategy });
+        exclude: ["/not-translated"], // Add paths that should not be translated
+    })

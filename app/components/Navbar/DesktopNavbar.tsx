@@ -1,5 +1,7 @@
+//app/components/Navbar/DesktopNavbar.tsx
+
 import Logo from "./Logo";
-import { Link } from "@/lib/i18n"; // Updated import
+import NavLink from './Navlink'; // Updated import
 
 const DesktopNavbar: React.FC = () => {
     return (
