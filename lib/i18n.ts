@@ -1,4 +1,4 @@
-// src/lib/i18n.ts
+// app /lib/i18n.ts
 import { createI18n } from "@inlang/paraglide-js-adapter-next"
 import type { AvailableLanguageTag } from "@/paraglide/runtime"
 
