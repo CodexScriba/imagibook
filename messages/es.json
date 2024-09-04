@@ -1,13 +1,14 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
 	"greeting": "¡Hola, bienvenido a nuestra aplicación!",
-	"greeting1": "Test",
-	"test_greeting": "gion bajo test",
+	"greeting1": "Prueba",
+	"test_greeting": "prueba de subrayado",
 	"testMessage": "Este es un mensaje de prueba.",
-	"navbar.howItWorks": "¿Cómo funciona?",
-	"navbar.pricing": "Precios",
-	"navbar.bookCreation": "Creación de Libros",
-	"navbar.library": "Biblioteca",
-	"navbar.aboutUs": "Sobre Nosotros",
-	"navbarHome": "Inicio"
+	"navbarPricing": "Precios",
+	"navbarBookCreation": "Creación de libros",
+	"navbarLibrary": "Biblioteca",
+	"navbarAboutUs": "Sobre nosotros",
+	"navbarHome": "Inicio",
+	"navbarHowItWorks": "¿Cómo funciona?",
+	"test": "prueba"
 }

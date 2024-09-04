@@ -4,10 +4,11 @@
 	"greeting1": "Test",
 	"test_greeting": "underscore test",
 	"testMessage": "This is a test message.",
-	"navbar.pricing": "Pricing",
-	"navbar.bookCreation": "Book Creation",
-	"navbar.library": "Library",
-	"navbar.aboutUs": "About Us",
+	"navbarPricing": "Pricing",
+	"navbarBookCreation": "Book Creation",
+	"navbarLibrary": "Library",
+	"navbarAboutUs": "About Us",
 	"navbarHome": "Home",
-	"navbarHowItWorks": "How it works?"
+	"navbarHowItWorks": "How it works?",
+	"test": "test"
 }
