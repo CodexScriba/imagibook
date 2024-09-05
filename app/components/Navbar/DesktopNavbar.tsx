@@ -3,6 +3,7 @@ import type React from "react";
 import NavLink from "./NavLink";
 import * as m from "@/paraglide/messages";
 import Logo from "./Logo";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 const DesktopNavbar: React.FC = () => {
 	const navItems = [
@@ -25,6 +26,7 @@ const DesktopNavbar: React.FC = () => {
 					prefetch={item.prefetch}
 				/>
 			))}
+			<LanguageSwitcher />
 		</div>
 	);
 };
