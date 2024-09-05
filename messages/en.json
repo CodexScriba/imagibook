@@ -1,13 +1,14 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
-	"greeting": "Hello, welcome to our app!",
-	"greeting1": "Test",
-	"test_greeting": "underscore test",
-	"testMessage": "This is a test message.",
-	"navbar.pricing": "Pricing",
-	"navbar.bookCreation": "Book Creation",
-	"navbar.library": "Library",
-	"navbar.aboutUs": "About Us",
+	"siteTitle": "ImagiBook.ai | English",
+	"siteDescription": "Tales and bedtime stories using AI",
+	"homePageTitle": "ImagiBook.ai - AI-Generated Stories | English",
+	"navbarPricing": "Pricing",
+	"navbarBookCreation": "Book Creation",
+	"navbarLibrary": "Library",
+	"navbarAboutUs": "About Us",
 	"navbarHome": "Home",
-	"navbarHowItWorks": "How it works?"
+	"navbarHowItWorks": "How it works?",
+	"navbarLang": "Language",
+	"test": "test"
 }
