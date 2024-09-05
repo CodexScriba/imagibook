@@ -1,0 +1,14 @@
+{
+	"$schema": "https://inlang.com/schema/inlang-message-format",
+	"siteDescription": "Cuentos e historias para dormir usando IA",
+	"homePageTitle": "ImagiBook.ai - Historias Generadas por IA | Español",
+	"homePageDescription": "Descubre cuentos e historias para dormir únicas generadas por IA en ImagiBook.ai",
+	"navbarPricing": "Precios",
+	"navbarBookCreation": "Crear Libro",
+	"navbarLibrary": "Biblioteca",
+	"navbarAboutUs": "Acerca de nosotros",
+	"navbarHome": "Inicio",
+	"navbarHowItWorks": "¿Cómo funciona?",
+	"navbarLang": "Idioma",
+	"test": "prueba"
+}

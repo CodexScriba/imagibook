@@ -16,7 +16,6 @@ import * as m from "@/paraglide/messages";
 const languages = [
 	{ code: "en", name: "English" },
 	{ code: "es", name: "Español" },
-	{ code: "de", name: "Deutsch" },
 ];
 
 export default function LanguageSwitcher() {

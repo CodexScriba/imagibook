@@ -1,0 +1,14 @@
+{
+	"$schema": "https://inlang.com/schema/inlang-message-format",
+	"siteTitle": "ImagiBook.ai | English",
+	"siteDescription": "Tales and bedtime stories using AI",
+	"homePageTitle": "ImagiBook.ai - AI-Generated Stories | English",
+	"navbarPricing": "Pricing",
+	"navbarBookCreation": "Book Creation",
+	"navbarLibrary": "Library",
+	"navbarAboutUs": "About Us",
+	"navbarHome": "Home",
+	"navbarHowItWorks": "How it works?",
+	"navbarLang": "Language",
+	"test": "test"
+}

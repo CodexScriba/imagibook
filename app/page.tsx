@@ -1,13 +1,15 @@
 import * as m from "@/paraglide/messages";
-import Navbar from "./components/Navbar/Navbar";
+import { createServerMetadata } from "@/components/SEO";
+
+export const metadata = createServerMetadata({
+	title: m.homePageTitle(),
+	description: m.homePageDescription(),
+});
 
 export default function Home() {
 	return (
-		<div className="bg-background">
-			<Navbar />
-			<p>{m.test()}</p>
-			<p>{m.navbarAboutUs()}</p>
-			<p>{m.navbarLibrary()}</p>
-		</div>
+		<main>
+			<h1>{m.test()}</h1>
+		</main>
 	);
 }
