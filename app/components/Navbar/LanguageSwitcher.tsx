@@ -1,16 +1,17 @@
 "use client";
-import React from 'react';
+import type React from 'react';
 import { useRouter, usePathname } from "@/lib/i18n";
 import { languageTag, type AvailableLanguageTag } from "@/paraglide/runtime";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Globe } from 'lucide-react'; // Import icons from lucide-react
 
-const languages: Record<AvailableLanguageTag, string> = {
-  en: "English",
-  es: "Español",
-  pt: "Português",
-  it: "Italiano",
-  fr: "Français",
-  de: "Deutsch",
+const languages: Record<AvailableLanguageTag, { name: string; icon: React.ReactNode }> = {
+  en: { name: "English", icon: <Globe /> }, 
+  es: { name: "Español", icon: <Globe /> },
+  pt: { name: "Português", icon: <Globe /> },
+  it: { name: "Italiano", icon: <Globe /> },
+  fr: { name: "Français", icon: <Globe /> },
+  de: { name: "Deutsch", icon: <Globe /> },
 };
 
 export default function LanguageSwitcher() {
@@ -23,13 +24,16 @@ export default function LanguageSwitcher() {
 
   return (
     <Select defaultValue={currentLanguage} onValueChange={handleLanguageChange}>
-      <SelectTrigger className="w-[180px] mt-4 bg-transparent border-none text-gray-500 text-base font-medium">
+      <SelectTrigger className="w-[150px] bg-transparent text-gray-500 text-base font-medium">
         <SelectValue placeholder="Select language" />
       </SelectTrigger>
       <SelectContent>
-        {(Object.entries(languages) as [AvailableLanguageTag, string][]).map(([lang, name]) => (
+        {(Object.entries(languages) as [AvailableLanguageTag, { name: string; icon: React.ReactNode }][]).map(([lang, { name, icon }]) => (
           <SelectItem key={lang} value={lang}>
-            {name}
+            <span className="flex items-center gap-2">
+              {icon}
+              {name}
+            </span>
           </SelectItem>
         ))}
       </SelectContent>

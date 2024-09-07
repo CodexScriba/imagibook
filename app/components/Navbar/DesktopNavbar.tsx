@@ -1,9 +1,9 @@
-//app/components/Navbar/DesktopNavbar.tsx
 import type React from "react";
 import NavLink from "./NavLink";
 import * as m from "@/paraglide/messages";
 import Logo from "./Logo";
 import LanguageSwitcher from "./LanguageSwitcher";
+import AuthButton from "./AuthButton";
 
 const DesktopNavbar: React.FC = () => {
 	const navItems = [
@@ -16,17 +16,24 @@ const DesktopNavbar: React.FC = () => {
 	];
 
 	return (
-		<nav className="hidden space-x-4 md:flex">
-			<Logo />
-			{navItems.map((item) => (
-				<NavLink
-					key={item.href}
-					href={item.href}
-					label={item.label()}
-					prefetch={item.prefetch}
-				/>
-			))}
-			<LanguageSwitcher />
+		<nav className="hidden md:flex items-center justify-between max-w-screen-2xl mx-auto px-4">
+			<div className="flex-shrink-0">
+				<Logo />
+			</div>
+			<div className="flex space-x-6 justify-center flex-grow">
+				{navItems.map((item) => (
+					<NavLink
+						key={item.href}
+						href={item.href}
+						label={item.label()}
+						prefetch={item.prefetch}
+					/>
+				))}
+			</div>
+			<div className="flex space-x-4">
+				<LanguageSwitcher />
+				<AuthButton />
+			</div>
 		</nav>
 	);
 };

@@ -14,7 +14,7 @@ const NavLink: React.FC<NavLinkProps> = ({ href, label, className, prefetch = fa
     href={href}
     prefetch={prefetch}
     className={cn(
-      "mt-6 text-base font-medium text-gray-500 hover:text-primary dark:hover:text-primary-foreground",
+      "text-base font-medium text-gray-500 hover:text-primary dark:hover:text-primary-foreground mt-2",
       className
     )}
   >

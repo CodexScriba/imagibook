@@ -8,7 +8,7 @@ interface LogoProps {
 
 const Logo: React.FC<LogoProps> = ({ className = "" }) => {
 	return (
-		<Link href="/" className={`flex items-center ${className}`}>
+		<Link href="/" className={`flex items-center ${className} -mt-4`}>
 			<Image
 				src="/images/logo/logoDesktop.png"
 				alt="Imagibook Logo"
