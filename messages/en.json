@@ -10,5 +10,6 @@
 	"navbarAboutUs": "About Us",
 	"navbarHome": "Home",
 	"navbarHowItWorks": "How it works?",
-	"navbarLang": "Language"
+	"navbarLang": "Language",
+	"navbarAuthButton": "Sign-in / Sign-up"
 }

@@ -1,6 +1,6 @@
 import * as m from "@/paraglide/messages";
 import { createServerMetadata } from "@/components/SEO";
-import LanguageSwitcher from "./components/Navbar/LanguageSwitcher";
+import Navbar from "./components/Navbar/Navbar";
 
 export const metadata = createServerMetadata({
 	title: m.homePageTitle(),
@@ -10,8 +10,7 @@ export const metadata = createServerMetadata({
 export default function Home() {
 	return (
 		<main>
-			<LanguageSwitcher />
-			<h1> {m.navbarLang()} </h1>
+			<Navbar/>
 		</main>
 	);
 }

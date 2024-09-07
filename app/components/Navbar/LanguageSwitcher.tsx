@@ -7,6 +7,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 const languages: Record<AvailableLanguageTag, string> = {
   en: "English",
   es: "Español",
+  pt: "Português",
+  it: "Italiano",
+  fr: "Français",
+  de: "Deutsch",
 };
 
 export default function LanguageSwitcher() {
@@ -19,7 +23,7 @@ export default function LanguageSwitcher() {
 
   return (
     <Select defaultValue={currentLanguage} onValueChange={handleLanguageChange}>
-      <SelectTrigger className="w-[180px]">
+      <SelectTrigger className="w-[180px] mt-4 bg-transparent border-none text-gray-500 text-base font-medium">
         <SelectValue placeholder="Select language" />
       </SelectTrigger>
       <SelectContent>

@@ -16,7 +16,7 @@ const DesktopNavbar: React.FC = () => {
 	];
 
 	return (
-		<div className="hidden space-x-4 md:flex">
+		<nav className="hidden space-x-4 md:flex">
 			<Logo />
 			{navItems.map((item) => (
 				<NavLink
@@ -27,7 +27,7 @@ const DesktopNavbar: React.FC = () => {
 				/>
 			))}
 			<LanguageSwitcher />
-		</div>
+		</nav>
 	);
 };
 
