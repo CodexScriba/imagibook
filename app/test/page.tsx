@@ -1,8 +1,11 @@
 import React from 'react'
+import DesktopNavbar from '../components/Navbar/DesktopNavbar'
 
 const test = () => {
   return (
-    <div className="bg-slate-700 max-w-screen-2xl mx-auto">test</div>
+    <div> 
+      <DesktopNavbar/>
+    </div>
   )
 }
 
