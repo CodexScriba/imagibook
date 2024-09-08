@@ -6,6 +6,7 @@ import "./globals.css";
 import { createServerMetadata } from "@/components/SEO";
 import * as m from "@/paraglide/messages";
 
+
 const poppins = Poppins({
 	subsets: ["latin"],
 	weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -24,10 +25,10 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<LanguageProvider>
-			<html lang={languageTag()} suppressHydrationWarning>
-				<body className={poppins.className}>{children}</body>
-			</html>
-		</LanguageProvider>
+			<LanguageProvider>
+				<html lang={languageTag()} suppressHydrationWarning>
+					<body className={poppins.className}>{children}</body>
+				</html>
+			</LanguageProvider>
 	);
 }
