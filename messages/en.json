@@ -11,5 +11,7 @@
 	"navbarHome": "Home",
 	"navbarHowItWorks": "How it works?",
 	"navbarLang": "Language",
-	"navbarAuthButton": "Sign-in / Sign-up"
+	"navbarAuthButton": "Sign-in / Sign-up",
+	"bookCreationTitle": "Create Your Story",
+	"bookCreationDescription": "Create your own story with our AI"	
 }
