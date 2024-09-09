@@ -10,7 +10,7 @@ export const metadata = createServerMetadata({
 
 export default function Home() {
 	return (
-		<main className="mt-6">
+		<main>
 			<Navbar/>
 		</main>
 	);

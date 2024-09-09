@@ -7,7 +7,7 @@ import AuthButton from "./AuthButton";
 
 const DesktopNavbar: React.FC = () => {
 	return (
-		<nav className="hidden md:flex items-center justify-between max-w-screen-2xl mx-auto px-4">
+		<nav className="hidden md:flex items-center justify-between max-w-screen-2xl mx-auto px-4 mt-5">
 			<div className="flex-shrink-0">
 				<Logo />
 			</div>
