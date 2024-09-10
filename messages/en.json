@@ -13,5 +13,10 @@
 	"navbarLang": "Language",
 	"navbarAuthButton": "Sign-in / Sign-up",
 	"bookCreationTitle": "Create Your Story",
-	"bookCreationDescription": "Create your own story with our AI"	
-}
+	"bookCreationDescription": "Create your own story with our AI",
+	"selectCreationMode": "Select Creation Mode",
+	"magicWandMode": "Magic Wand Mode",
+	"magicWandDescription": "Craft magical stories with minimal effort. Let our AI-powered storyteller weave enchanting tales based on your ideas. Perfect for quick, effortless creation of captivating narratives.",
+	"storybookStudioMode": "Storybook Studio",
+	"storybookStudioDescription": "Step into your personal writer's workshop. Here, you have the tools to carefully construct your narrative, fine-tune characters, and build rich, detailed worlds. Ideal for those who enjoy a hands-on approach to crafting the perfect story."
+  }
