@@ -1,3 +1,4 @@
+'use client'
 import type React from 'react';
 import { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -52,35 +53,6 @@ const BookCreationForm: React.FC = () => {
                 form.setValue('creationMode', mode);
               }} 
             />
-
-            <FormField
-              control={form.control}
-              name="storyTitle"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{m.storyTitleLabel()}</FormLabel>
-                  <FormControl>
-                    <Input placeholder={m.storyTitlePlaceholder()} {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="mainCharacter"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{m.mainCharacterLabel()}</FormLabel>
-                  <FormControl>
-                    <Input placeholder={m.mainCharacterPlaceholder()} {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
             <Button type="submit">{m.createStoryButton()}</Button>
           </form>
         </Form>
