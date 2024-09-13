@@ -1,57 +1,85 @@
+'use client'
 import type React from 'react';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Wand2, BookOpen } from 'lucide-react';
+import { useState } from 'react';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
 import * as m from "@/paraglide/messages";
+import CreationModeSelector from './CreationModeSelector';
+import CharacterInput from './CharacterInput';
 
-interface CreationModeSelectorProps {
-  mode: 'magicWand' | 'storybookStudio';
-  onModeChange: (mode: 'magicWand' | 'storybookStudio') => void;
-}
+// Updated form schema
+const formSchema = z.object({
+  storyTitle: z.string().min(1, { message: "Story title is required" }),
+  creationMode: z.enum(['magicWand', 'storybookStudio']),
+  characters: z.array(
+    z.object({
+      name: z.string().min(1, { message: "Character description is required" })
+    })
+  ).min(1, { message: "At least one character is required" })
+});
 
-const CreationModeSelector: React.FC<CreationModeSelectorProps> = ({ mode, onModeChange }) => {
+type FormData = z.infer<typeof formSchema>;
+
+const BookCreationForm: React.FC = () => {
+  const [creationMode, setCreationMode] = useState<'magicWand' | 'storybookStudio'>('magicWand');
+  
+  const form = useForm<FormData>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      storyTitle: "",
+      creationMode: 'magicWand',
+      characters: [{ name: "" }]
+    },
+  });
+
+  const onSubmit = (data: FormData) => {
+    console.log(data); // Handle form submission
+  };
+
   return (
-    <div>
-      <h2 className="text-lg font-semibold mb-4">{m.selectCreationMode()}</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Card
-          className={`cursor-pointer transition-all ${
-            mode === 'magicWand' ? 'ring-2 ring-primary' : ''
-          }`}
-          onClick={() => onModeChange('magicWand')}
-        >
-          <CardHeader>
-            <CardTitle className="flex items-center">
-              <Wand2 className="w-5 h-5 mr-2" />
-              {m.magicWandMode()}
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <CardDescription>
-              {m.magicWandDescription()}
-            </CardDescription>
-          </CardContent>
-        </Card>
-        <Card
-          className={`cursor-pointer transition-all ${
-            mode === 'storybookStudio' ? 'ring-2 ring-primary' : ''
-          }`}
-          onClick={() => onModeChange('storybookStudio')}
-        >
-          <CardHeader>
-            <CardTitle className="flex items-center">
-              <BookOpen className="w-5 h-5 mr-2" />
-              {m.storybookStudioMode()}
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <CardDescription>
-              {m.storybookStudioDescription()}
-            </CardDescription>
-          </CardContent>
-        </Card>
-      </div>
-    </div>
+    <Card className="w-full max-w-2xl mx-auto mt-10">
+      <CardHeader>
+        <CardTitle className="font-bold justify-center items-center text-center">{m.bookCreationTitle()}</CardTitle>
+        <CardDescription className='text-center'>{m.bookCreationDescription()}</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            <FormField
+              control={form.control}
+              name="storyTitle"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Story Title</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Enter your story title" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            
+            <CreationModeSelector 
+              mode={creationMode} 
+              onModeChange={(mode) => {
+                setCreationMode(mode);
+                form.setValue('creationMode', mode);
+              }} 
+            />
+            
+            <CharacterInput />
+            
+            <Button type="submit">{m.createStoryButton()}</Button>
+          </form>
+        </Form>
+      </CardContent>
+    </Card>
   );
 };
 
-export default CreationModeSelector;
+export default BookCreationForm;
