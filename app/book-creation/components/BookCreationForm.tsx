@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -12,24 +13,29 @@ import {
 } from "@/components/ui/card";
 import { Form } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
+import CreationModeSelector from "./CreationModeSelector"; // Import the new component
 
 const formSchema = z.object({
-	// Define your form schema here
+	// Define your form schema here (if any AI inputs or configurations are needed)
 });
 
 type FormValues = z.infer<typeof formSchema>;
 
 const BookCreationForm: React.FC = () => {
+	const [mode, setMode] = useState<"magicWand" | "storybookStudio">(
+		"magicWand",
+	); // State to handle mode selection
+
 	const form = useForm<FormValues>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
-			// Set your default values here
+			// Set your default values here, if any
 		},
 	});
 
 	const onSubmit = (data: FormValues) => {
-		console.log(data);
-		// Handle form submission
+		console.log({ ...data, mode }); // Log the form data along with the selected mode
+		// Handle form submission, likely passing the mode to the AI for processing
 	};
 
 	return (
@@ -46,7 +52,9 @@ const BookCreationForm: React.FC = () => {
 								onSubmit={form.handleSubmit(onSubmit)}
 								className="space-y-6"
 							>
-								{/* Add your form fields here */}
+								{/* Creation Mode Selector */}
+								<CreationModeSelector mode={mode} onModeChange={setMode} />
+
 								<div className="flex justify-center">
 									<Button type="submit">Submit</Button>
 								</div>
