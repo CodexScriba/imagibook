@@ -1,64 +1,70 @@
-'use client'
-import type React from 'react';
-import { useState } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+"use client";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import * as m from "@/paraglide/messages";
-import CreationModeSelector from './CreationModeSelector';
+import {
+	Card,
+	CardContent,
+	CardDescription,
+	CardHeader,
+	CardTitle,
+} from "@/components/ui/card";
+import { Form } from "@/components/ui/form";
+import { Button } from "@/components/ui/button";
+import CreationModeSelector from "./CreationModeSelector"; // Import the new component
 
-// Form schema
 const formSchema = z.object({
-  storyTitle: z.string().min(1, { message: "Story title is required" }),
-  mainCharacter: z.string().min(1, { message: "Main character name is required" }),
-  creationMode: z.enum(['magicWand', 'storybookStudio']),
+	// Define your form schema here (if any AI inputs or configurations are needed)
 });
 
-type FormData = z.infer<typeof formSchema>;
+type FormValues = z.infer<typeof formSchema>;
 
 const BookCreationForm: React.FC = () => {
-  const [creationMode, setCreationMode] = useState<'magicWand' | 'storybookStudio'>('magicWand');
+	const [mode, setMode] = useState<"magicWand" | "storybookStudio">(
+		"magicWand",
+	); // State to handle mode selection
 
-  const form = useForm<FormData>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      storyTitle: "",
-      mainCharacter: "",
-      creationMode: 'magicWand',
-    },
-  });
+	const form = useForm<FormValues>({
+		resolver: zodResolver(formSchema),
+		defaultValues: {
+			// Set your default values here, if any
+		},
+	});
 
-  const onSubmit = (data: FormData) => {
-    console.log(data);
-    // Handle form submission
-  };
+	const onSubmit = (data: FormValues) => {
+		console.log({ ...data, mode }); // Log the form data along with the selected mode
+		// Handle form submission, likely passing the mode to the AI for processing
+	};
 
-  return (
-    <Card className="w-full max-w-4xl mx-auto mt-10">
-      <CardHeader>
-        <CardTitle className="font-bold justify-center items-center text-center">{m.bookCreationTitle()}</CardTitle>
-        <CardDescription className='text-center'>{m.bookCreationDescription()}</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-            <CreationModeSelector 
-              mode={creationMode} 
-              onModeChange={(mode) => {
-                setCreationMode(mode);
-                form.setValue('creationMode', mode);
-              }} 
-            />
-            <Button type="submit">{m.createStoryButton()}</Button>
-          </form>
-        </Form>
-      </CardContent>
-    </Card>
-  );
+	return (
+		<div className="mt-10 w-full flex items-center justify-center">
+			<div className="w-full max-w-2xl">
+				<Card>
+					<CardHeader className="text-center">
+						<CardTitle>{m.bookCreationTitle()}</CardTitle>
+						<CardDescription>{m.bookCreationDescription()}</CardDescription>
+					</CardHeader>
+					<CardContent>
+						<Form {...form}>
+							<form
+								onSubmit={form.handleSubmit(onSubmit)}
+								className="space-y-6"
+							>
+								{/* Creation Mode Selector */}
+								<CreationModeSelector mode={mode} onModeChange={setMode} />
+
+								<div className="flex justify-center">
+									<Button type="submit">Submit</Button>
+								</div>
+							</form>
+						</Form>
+					</CardContent>
+				</Card>
+			</div>
+		</div>
+	);
 };
 
 export default BookCreationForm;
