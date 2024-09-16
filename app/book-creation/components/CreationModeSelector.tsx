@@ -23,6 +23,7 @@ const CreationModeSelector: React.FC<CreationModeSelectorProps> = ({
 
 			<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 				<Card
+					role="button"
 					className={`cursor-pointer transition-all ${
 						mode === "magicWand" ? "border-primary" : ""
 					}`}
@@ -46,6 +47,7 @@ const CreationModeSelector: React.FC<CreationModeSelectorProps> = ({
 				</Card>
 
 				<Card
+					role="button"
 					className={`cursor-pointer transition-all ${
 						mode === "storybookStudio" ? "border-primary" : ""
 					}`}
