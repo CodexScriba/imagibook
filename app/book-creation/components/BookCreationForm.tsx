@@ -44,7 +44,7 @@ const BookCreationForm: React.FC = () => {
 
   const onSubmit = (data: FormValues) => {
     console.log(data);
-    // Handle form submission
+    // Handle form submission, e.g., send data to an API
   };
 
   return (

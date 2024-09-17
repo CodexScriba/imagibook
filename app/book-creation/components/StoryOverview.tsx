@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea"; // Adjust the import path a
 import { Label } from "@/components/ui/label";
 import { BookOpen } from "lucide-react"; // Example icon import
 import { cn } from "@/lib/utils"; // Utility for conditional classNames
+import * as m from "@/paraglide/messages"; // Importing internationalized messages
 
 const StoryOverview: React.FC = () => {
   const {
@@ -18,10 +19,10 @@ const StoryOverview: React.FC = () => {
     <div className="space-y-4">
       <legend className="text-lg font-semibold flex items-center space-x-2">
         <BookOpen className="w-5 h-5" />
-        <span>Story Overview: Set the Scene for Your Tale</span>
+        <span>{m.storyOverview_label()}</span>
       </legend>
       <p className="text-sm text-muted-foreground">
-        Tell us what happens in the story.
+        {m.storyOverview_description()}
       </p>
       <Controller
         name="storyOverview"
@@ -30,7 +31,7 @@ const StoryOverview: React.FC = () => {
           <Textarea
             {...field}
             id="storyOverview"
-            placeholder='Example: "Noah gets his first bike. He\'s nervous and unsure if he can ride it. His father patiently teaches him, and his mother encourages him. Noah overcomes his fear and learns to ride confidently, bringing the family closer."'
+            placeholder={m.storyOverview_example()}
             className={cn(
               "mt-1",
               errors.storyOverview ? "border-red-500" : "border-gray-300"
@@ -41,7 +42,7 @@ const StoryOverview: React.FC = () => {
       />
       {errors.storyOverview && (
         <p className="text-sm text-red-600">
-          {errors.storyOverview.message}
+          {m.storyOverview_errors_minLength()}
         </p>
       )}
     </div>
