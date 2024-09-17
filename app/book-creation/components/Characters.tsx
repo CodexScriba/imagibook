@@ -6,7 +6,7 @@ import {
 } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Plus, Minus, UserPlus } from "lucide-react";
+import { Plus, X, UserPlus } from "lucide-react";
 import { z } from "zod";
 import { Label } from "@/components/ui/label";
 import * as m from "@/paraglide/messages";
@@ -24,9 +24,11 @@ export const charactersSchema = z
 type CharacterFormData = z.infer<typeof charactersSchema>;
 
 const ErrorMessage: React.FC<{ message?: string }> = ({ message }) => {
-	return message ? (
-		<p className="text-sm text-red-500 mt-1">{message}</p>
-	) : null;
+	return (
+		<div className={`${message ? "h-6" : "h-0"} transition-all duration-200`}>
+			{message && <p className="text-sm text-red-500">{message}</p>}
+		</div>
+	);
 };
 
 const Characters: React.FC = () => {
@@ -42,6 +44,13 @@ const Characters: React.FC = () => {
 
 	const characterErrors = errors.characters as FieldErrors<CharacterFormData>;
 
+	// Function to handle removal with a check
+	const handleRemove = (index: number) => {
+		if (fields.length > 1) {
+			remove(index);
+		}
+	};
+
 	return (
 		<div className="space-y-4">
 			<legend className="text-lg font-semibold flex space-x-1">
@@ -51,57 +60,69 @@ const Characters: React.FC = () => {
 			<p className="text-sm text-muted-foreground">
 				{m.characters_description()}
 			</p>
-
-			{/* Character Fields */}
+			{/* Labels displayed once */}
+			<div className="grid grid-cols-[2fr_3fr_auto] gap-4">
+				<div className="relative">
+					<Label>{m.characters_labels_name()}</Label>
+				</div>
+				<div className="relative">
+					<Label>{m.characters_labels_description()}</Label>
+				</div>
+			</div>
 			{fields.map((field, index) => (
-				<div key={field.id} className="grid grid-cols-2 gap-4">
-					<div>
-						<Label htmlFor={`character-name-${index}`}>
-							{m.characters_labels_name()}
-						</Label>
-						<Input
-							id={`character-name-${index}`}
-							{...register(`characters.${index}.name`)}
-							placeholder={m.characters_placeholders_name()}
-							className="mt-1"
-						/>
+				<div
+					key={field.id}
+					className="grid grid-cols-[2fr_3fr_auto] gap-4 items-start mt-1"
+				>
+					{/* Name Input Field with Reduced Width */}
+					<div className="flex flex-col">
+						<div className="flex items-center">
+							<Input
+								id={`character-name-${index}`}
+								{...register(`characters.${index}.name`)}
+								placeholder={m.characters_placeholders_name()}
+								className="w-3/4"
+							/>
+							{/* Ghost Delete Button next to Name Input */}
+							<Button
+								type="button"
+								variant="ghost"
+								size="icon"
+								onClick={() => handleRemove(index)}
+								className="ml-1"
+								aria-label={m.characters_buttons_remove()}
+								disabled={fields.length <= 1} // Disable when only one field
+							>
+								<X
+									className={`${
+										fields.length <= 1
+											? "text-gray-400 cursor-not-allowed"
+											: "text-red-500"
+									} text-xl font-bold`}
+								/>
+								<span className="sr-only">{m.characters_buttons_remove()}</span>
+							</Button>
+						</div>
 						<ErrorMessage message={characterErrors?.[index]?.name?.message} />
 					</div>
-					<div>
-						<Label htmlFor={`character-description-${index}`}>
-							{m.characters_labels_description()}
-						</Label>
+
+					{/* Description Input Field */}
+					<div className="flex flex-col">
 						<Input
 							id={`character-description-${index}`}
 							{...register(`characters.${index}.description`)}
 							placeholder={m.characters_placeholders_description()}
-							className="mt-1"
 						/>
 						<ErrorMessage
 							message={characterErrors?.[index]?.description?.message}
 						/>
 					</div>
-					{/* Show remove button only if there are at least two fields */}
-					{fields.length > 1 && (
-						<Button
-							type="button"
-							variant="destructive"
-							size="icon"
-							onClick={() => remove(index)}
-							aria-label={m.characters_buttons_remove()}
-							className="h-8 w-8 p-0 col-span-2 justify-self-end"
-						>
-							<Minus className="h-4 w-4" />
-						</Button>
-					)}
 				</div>
 			))}
-
 			{/* Display Root Error */}
 			{characterErrors?.root?.message && (
 				<ErrorMessage message={characterErrors.root.message} />
 			)}
-
 			{/* Add Character Button */}
 			<div className="flex justify-center mt-4">
 				<Button
