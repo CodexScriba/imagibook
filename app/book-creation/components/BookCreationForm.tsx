@@ -1,6 +1,6 @@
 "use client";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
+// BookCreationForm.tsx
+import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import * as m from "@/paraglide/messages";
@@ -11,31 +11,30 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
-import { Form } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
-import CreationModeSelector from "./CreationModeSelector"; // Import the new component
+import CreationModeSelector from "./CreationModeSelector";
+import Characters, { charactersSchema } from "./Characters";
 
 const formSchema = z.object({
-	// Define your form schema here (if any AI inputs or configurations are needed)
+	mode: z.enum(["magicWand", "storybookStudio"]),
+	characters: charactersSchema,
+	// Add more fields as needed for other form sections
 });
 
 type FormValues = z.infer<typeof formSchema>;
 
 const BookCreationForm: React.FC = () => {
-	const [mode, setMode] = useState<"magicWand" | "storybookStudio">(
-		"magicWand",
-	); // State to handle mode selection
-
-	const form = useForm<FormValues>({
+	const methods = useForm<FormValues>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
-			// Set your default values here, if any
+			mode: "magicWand",
+			characters: [{ name: "", description: "" }],
 		},
 	});
 
 	const onSubmit = (data: FormValues) => {
-		console.log({ ...data, mode }); // Log the form data along with the selected mode
-		// Handle form submission, likely passing the mode to the AI for processing
+		console.log(data);
+		// Handle form submission
 	};
 
 	return (
@@ -43,23 +42,23 @@ const BookCreationForm: React.FC = () => {
 			<div className="w-full max-w-2xl">
 				<Card>
 					<CardHeader className="text-center">
-						<CardTitle>{m.bookCreationTitle()}</CardTitle>
-						<CardDescription>{m.bookCreationDescription()}</CardDescription>
+						<CardTitle>{m.bookCreation_title()}</CardTitle>
+						<CardDescription>{m.bookCreation_description()}</CardDescription>
 					</CardHeader>
 					<CardContent>
-						<Form {...form}>
+						<FormProvider {...methods}>
 							<form
-								onSubmit={form.handleSubmit(onSubmit)}
+								onSubmit={methods.handleSubmit(onSubmit)}
 								className="space-y-6"
 							>
-								{/* Creation Mode Selector */}
-								<CreationModeSelector mode={mode} onModeChange={setMode} />
-
+								<CreationModeSelector />
+								<Characters />
+								{/* Add other form sections here */}
 								<div className="flex justify-center">
-									<Button type="submit">Submit</Button>
+									<Button type="submit">{m.bookCreation_submitButton()}</Button>
 								</div>
 							</form>
-						</Form>
+						</FormProvider>
 					</CardContent>
 				</Card>
 			</div>
