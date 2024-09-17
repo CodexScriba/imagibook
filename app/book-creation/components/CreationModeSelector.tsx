@@ -1,4 +1,3 @@
-"use client";
 import type React from "react";
 import { useFormContext } from "react-hook-form";
 import {
@@ -43,10 +42,14 @@ const CreationModeSelector: React.FC = () => {
 						className={`cursor-pointer transition-all ${
 							mode === item.id ? "border-primary" : ""
 						}`}
+						data-testid={`${item.id}-card`}
 					>
-						<label htmlFor={item.id} className="block h-full cursor-pointer">
+						<label className="block h-full cursor-pointer">
 							<CardHeader className="py-2">
-								<CardTitle className="flex items-center text-sm font-semibold">
+								<CardTitle
+									className="flex items-center text-sm font-semibold"
+									id={`${item.id}-label`}
+								>
 									<item.icon className="w-5 h-5 mr-2" />
 									{item.title}
 								</CardTitle>
@@ -61,6 +64,7 @@ const CreationModeSelector: React.FC = () => {
 									value={item.id}
 									{...register("mode")}
 									className="sr-only"
+									aria-labelledby={`${item.id}-label`}
 								/>
 							</CardContent>
 						</label>
