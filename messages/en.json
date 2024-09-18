@@ -28,8 +28,7 @@
 	"creationMode_magicWand_description": "Effortlessly create enchanting tales with our AI storyteller. Perfect for quick, magical narratives.",
 	"creationMode_storybookStudio_title": "Storybook Studio",
 	"creationMode_storybookStudio_description": "Your personal writer's workshop to craft and fine-tune rich, detailed stories. Ideal for hands-on creators.",
-	
-	/* --- Character Input field --- */
+
 	"characters_legend": "Character Creation",
 	"characters_description": "Please provide a name and (optional) description of the main characters in your story.",
 	"characters_labels_name": "Character Name",
@@ -41,9 +40,8 @@
 	"characters_errors_nameRequired": "Name is required",
 	"characters_errors_atLeastOne": "At least one character is required",
 
-	/* --- StoryOverview Component Internationalization --- */
 	"storyOverview_label": "Story Overview: Set the Scene for Your Tale",
 	"storyOverview_description": "Tell us what happens in the story.",
-	"storyOverview_example": "Example: \"Noah gets his first bike. He's nervous and unsure if he can ride it. His father patiently teaches him, and his mother encourages him. Noah overcomes his fear and learns to ride confidently, bringing the family closer.\"",
+	"storyOverview_example": "Noah gets his first bike. He's nervous and unsure if he can ride it. His father patiently teaches him, and his mother encourages him. Noah overcomes his fear and learns to ride confidently, bringing the family closer.",
 	"storyOverview_errors_minLength": "Story Overview must be at least 100 characters long"
 }
