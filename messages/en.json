@@ -43,5 +43,7 @@
 	"storyOverview_label": "Story Overview: Set the Scene for Your Tale",
 	"storyOverview_description": "Tell us what happens in the story.",
 	"storyOverview_example": "Noah gets his first bike. He's nervous and unsure if he can ride it. His father patiently teaches him, and his mother encourages him. Noah overcomes his fear and learns to ride confidently, bringing the family closer.",
-	"storyOverview_errors_minLength": "Story Overview must be at least 100 characters long"
+	"storyOverview_errors_minLength": "Story Overview must be at least 100 characters long",
+
+	"steps_next_button": "Next"
 }

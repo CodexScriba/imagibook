@@ -1,3 +1,4 @@
+// components/CreationModeSelector.tsx
 import type React from "react";
 import { useFormContext } from "react-hook-form";
 import {
@@ -33,7 +34,7 @@ const CreationModeSelector: React.FC = () => {
 		<fieldset className="space-y-4">
 			<legend className="text-lg font-semibold flex space-x-1">
 				<span>{m.creationMode_legend()}</span>
-				<ArrowRightLeft className=" mt-1 w-5 h-5" />
+				<ArrowRightLeft className="mt-1 w-5 h-5" />
 			</legend>
 			<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 				{options.map((item) => (
