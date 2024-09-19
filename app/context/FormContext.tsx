@@ -1,71 +1,74 @@
 // app/context/FormContext.tsx
 "use client";
 import type React from "react";
-import { createContext, useContext, useState } from "react";
-import { useForm, UseFormReturn } from "react-hook-form";
+import { createContext, useContext } from "react";
+import {
+	useForm,
+	type UseFormReturn,
+	FormProvider as RHFFormProvider,
+} from "react-hook-form";
 import { z } from "zod";
-import * as m from "@/paraglide/messages";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-// Define your form schema
+// Define sub-schemas
+const step1Schema = z.object({
+	mode: z.enum(["magicWand", "storybookStudio"]),
+});
+
 const characterSchema = z.object({
-	name: z.string().min(1, m.characters_errors_nameRequired()),
+	name: z.string().min(1, "Name is required"),
 	description: z.string().optional(),
 });
-const storyOverviewSchema = z
-	.string()
-	.min(100, m.storyOverview_errors_minLength());
-    
-const formSchema = z.object({
-	mode: z.enum(["magicWand", "storybookStudio"]),
-	characters: z.array(characterSchema).min(1, m.characters_errors_atLeastOne()),
-	storyOverview: storyOverviewSchema,
-	// ...other fields
+const step2Schema = z.object({
+	characters: z
+		.array(characterSchema)
+		.min(1, "At least one character is required"),
 });
+
+// ... other step schemas
+
+// Combine into a global schema
+const formSchema = step1Schema.merge(step2Schema); // Extend as needed
 
 type FormValues = z.infer<typeof formSchema>;
 
 interface FormContextProps {
-	formData: FormValues;
-	updateFormData: (data: Partial<FormValues>) => void;
+	formMethods: UseFormReturn<FormValues>;
 	resetFormData: () => void;
 }
 
-const FormContext = createContext<FormContextProps | undefined>(undefined);
+const FormDataContext = createContext<FormContextProps | undefined>(undefined);
 
-export const useFormContextData = () => {
-	const context = useContext(FormContext);
+export const useFormDataContext = () => {
+	const context = useContext(FormDataContext);
 	if (!context) {
-		throw new Error("useFormContextData must be used within a FormProvider");
+		throw new Error(
+			"useFormDataContext must be used within a FormDataProvider",
+		);
 	}
 	return context;
 };
 
-export const FormProvider: React.FC<{ children: React.ReactNode }> = ({
+export const FormDataProvider: React.FC<{ children: React.ReactNode }> = ({
 	children,
 }) => {
-	const [formData, setFormData] = useState<FormValues>({
-		mode: "magicWand",
-		characters: [{ name: "", description: "" }],
-		storyOverview: "",
-		// ...initialize other fields
-	});
-
-	const updateFormData = (data: Partial<FormValues>) => {
-		setFormData((prev) => ({ ...prev, ...data }));
-	};
-
-	const resetFormData = () => {
-		setFormData({
+	const formMethods = useForm<FormValues>({
+		resolver: zodResolver(formSchema),
+		defaultValues: {
 			mode: "magicWand",
 			characters: [{ name: "", description: "" }],
-			storyOverview: "",
-			// ...reset other fields
-		});
+			// ...initialize other fields
+		},
+		mode: "onBlur",
+	});
+
+	const resetFormData = () => {
+		formMethods.reset();
 	};
 
 	return (
-		<FormContext.Provider value={{ formData, updateFormData, resetFormData }}>
-			{children}
-		</FormContext.Provider>
+		<FormDataContext.Provider value={{ formMethods, resetFormData }}>
+			<RHFFormProvider {...formMethods}>{children}</RHFFormProvider>
+		</FormDataContext.Provider>
 	);
 };
