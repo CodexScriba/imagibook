@@ -36,10 +36,10 @@ const Characters: React.FC = () => {
 
 	return (
 		<div className="space-y-4">
-			<legend className="text-lg font-semibold flex space-x-1">
+			<h1 className="text-lg font-semibold flex space-x-1">
 				<span>{m.characters_legend()}</span>
 				<UserPlus className="mt-1 w-5 h-5" />
-			</legend>
+			</h1>
 			<p className="text-sm text-muted-foreground">
 				{m.characters_description()}
 			</p>

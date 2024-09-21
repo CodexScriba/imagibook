@@ -17,8 +17,8 @@ export const FormDataProvider: React.FC<{ children: React.ReactNode }> = ({
 	const methods = useForm<FormValues>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
-			mode: "magicWand",
 			characters: [{ name: "", description: "" }],
+			mode: "magicWand",
 			storyOverview: "",
 			// Initialize other default values as needed
 		},
