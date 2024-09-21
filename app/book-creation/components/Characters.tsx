@@ -1,9 +1,11 @@
+// app/book-creation/components/Characters.tsx
 "use client";
+
 import type React from "react";
 import { useFieldArray } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Plus, X, UserPlus } from "lucide-react";
+import { Plus, X } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import * as m from "@/paraglide/messages";
 import { useFormData } from "@/app/context/FormContext";
@@ -36,21 +38,6 @@ const Characters: React.FC = () => {
 
 	return (
 		<div className="space-y-4">
-			<h1 className="text-lg font-semibold flex space-x-1">
-				<span>{m.characters_legend()}</span>
-				<UserPlus className="mt-1 w-5 h-5" />
-			</h1>
-			<p className="text-sm text-muted-foreground">
-				{m.characters_description()}
-			</p>
-			<div className="grid grid-cols-[2fr_3fr_auto] gap-4">
-				<div className="relative">
-					<Label>{m.characters_labels_name()}</Label>
-				</div>
-				<div className="relative">
-					<Label>{m.characters_labels_description()}</Label>
-				</div>
-			</div>
 			{fields.map((field, index) => (
 				<div
 					key={field.id}
