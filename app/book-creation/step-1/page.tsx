@@ -17,7 +17,6 @@ const Step1Page: React.FC = () => {
 	const onSubmit = (data: {
 		characters: { name: string; description?: string | undefined }[];
 	}) => {
-		// You might want to handle the form data here before navigating
 		router.push("/book-creation/step-3");
 	};
 
@@ -26,25 +25,27 @@ const Step1Page: React.FC = () => {
 	};
 
 	return (
-		<CardWrapper
-			title={
-				<div className="flex items-center justify-center">
-					<UserRoundPlus className="mr-2" />
-					<span>{m.characters_legend()}</span>
-				</div>
-			}
-			description={m.characters_description()}
-		>
-			<form onSubmit={methods.handleSubmit(onSubmit)} className="space-y-6">
-				<Characters />
-				<div className="flex justify-between">
-					<Button type="button" onClick={onBack}>
-						Previous
-					</Button>
-					<Button type="submit">Next</Button>
-				</div>
-			</form>
-		</CardWrapper>
+		<div className="min-h-screen flex flex-col items-center justify-start pt-10 px-4">
+			<CardWrapper
+				title={
+					<div className="flex items-center justify-center">
+						<UserRoundPlus className="mr-2" />
+						<span>{m.characters_legend()}</span>
+					</div>
+				}
+				description={m.characters_description()}
+			>
+				<form onSubmit={methods.handleSubmit(onSubmit)} className="space-y-6">
+					<Characters />
+					<div className="flex justify-between mt-auto">
+						<Button type="button" onClick={onBack}>
+							Previous
+						</Button>
+						<Button type="submit">Next</Button>
+					</div>
+				</form>
+			</CardWrapper>
+		</div>
 	);
 };
 

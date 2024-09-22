@@ -1,3 +1,4 @@
+// app/components/CardWrapper.tsx
 import type React from "react";
 import {
 	Card,
@@ -19,12 +20,16 @@ const CardWrapper: React.FC<CardWrapperProps> = ({
 	description,
 }) => {
 	return (
-		<Card className="w-full">
-			<CardHeader className="space-y-6 text-center">
-				<CardTitle className="pt-6">{title}</CardTitle>
-				<CardDescription>{description}</CardDescription>
+		<Card className="w-full max-w-4xl flex flex-col shadow-lg">
+			<CardHeader className="space-y-4 text-center p-6">
+				<CardTitle className="text-2xl font-semibold">{title}</CardTitle>
+				<CardDescription className="text-gray-600">
+					{description}
+				</CardDescription>
 			</CardHeader>
-			<CardContent>{children}</CardContent>
+			<CardContent className="flex-grow flex flex-col justify-between p-6">
+				<div className="w-4/5 mx-auto space-y-6">{children}</div>
+			</CardContent>
 		</Card>
 	);
 };
