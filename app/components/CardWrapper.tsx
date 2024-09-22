@@ -1,4 +1,3 @@
-// components/CardWrapper.tsx
 import type React from "react";
 import {
 	Card,
@@ -10,7 +9,7 @@ import {
 
 interface CardWrapperProps {
 	children: React.ReactNode;
-	title: string;
+	title: React.ReactNode;
 	description: string;
 }
 
@@ -21,8 +20,8 @@ const CardWrapper: React.FC<CardWrapperProps> = ({
 }) => {
 	return (
 		<Card className="w-full">
-			<CardHeader>
-				<CardTitle>{title}</CardTitle>
+			<CardHeader className="space-y-6 text-center">
+				<CardTitle className="pt-6">{title}</CardTitle>
 				<CardDescription>{description}</CardDescription>
 			</CardHeader>
 			<CardContent>{children}</CardContent>

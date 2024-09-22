@@ -15,7 +15,6 @@ const ErrorMessage: React.FC<{ message?: string }> = ({ message }) => (
 		{message && <p className="text-sm text-red-500">{message}</p>}
 	</div>
 );
-
 const Characters: React.FC = () => {
 	const {
 		control,
@@ -38,6 +37,12 @@ const Characters: React.FC = () => {
 
 	return (
 		<div className="space-y-4">
+			<div className="grid grid-cols-[2fr_3fr_auto] gap-4 items-start mt-1">
+				<Label htmlFor="character-name-0">{m.characters_labels_name()}</Label>
+				<Label htmlFor="character-description-0">
+					{m.characters_labels_description()}
+				</Label>
+			</div>
 			{fields.map((field, index) => (
 				<div
 					key={field.id}
@@ -103,5 +108,4 @@ const Characters: React.FC = () => {
 		</div>
 	);
 };
-
 export default Characters;

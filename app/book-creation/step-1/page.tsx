@@ -8,6 +8,7 @@ import Characters from "../components/Characters";
 import { useFormData } from "@/app/context/FormContext";
 import CardWrapper from "@/app/components/CardWrapper";
 import * as m from "@/paraglide/messages";
+import { UserRoundPlus } from "lucide-react";
 
 const Step1Page: React.FC = () => {
 	const methods = useFormData();
@@ -26,7 +27,12 @@ const Step1Page: React.FC = () => {
 
 	return (
 		<CardWrapper
-			title={m.characters_legend()}
+			title={
+				<div className="flex items-center justify-center">
+					<UserRoundPlus className="mr-2" />
+					<span>{m.characters_legend()}</span>
+				</div>
+			}
 			description={m.characters_description()}
 		>
 			<form onSubmit={methods.handleSubmit(onSubmit)} className="space-y-6">
