@@ -3,7 +3,7 @@
 
 import type React from "react";
 import { createContext, useContext } from "react";
-import { useForm, type UseFormReturn } from "react-hook-form";
+import { useForm, type UseFormReturn, FormProvider } from "react-hook-form"; // Import FormProvider
 import { zodResolver } from "@hookform/resolvers/zod";
 import { formSchema, type FormValues } from "./schemas";
 
@@ -25,7 +25,10 @@ export const FormDataProvider: React.FC<{ children: React.ReactNode }> = ({
 	});
 
 	return (
-		<FormContext.Provider value={methods}>{children}</FormContext.Provider>
+		<FormContext.Provider value={methods}>
+			{/* Wrap children with FormProvider */}
+			<FormProvider {...methods}>{children}</FormProvider>
+		</FormContext.Provider>
 	);
 };
 
