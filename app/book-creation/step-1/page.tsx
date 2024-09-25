@@ -15,9 +15,11 @@ const Step1Page: React.FC = () => {
 	const router = useRouter();
 
 	const onSubmit = (data: {
-		characters: { name: string; description?: string | undefined }[];
+		characters: { name: string; description?: string }[];
 	}) => {
-		router.push("/book-creation/step-3");
+		console.log("Step 1 Data:", data);
+		// You can store the data in a state management solution or pass it to the next step
+		router.push("/book-creation/step-2");
 	};
 
 	const onBack = () => {
@@ -39,9 +41,9 @@ const Step1Page: React.FC = () => {
 					<Characters />
 					<div className="flex justify-between mt-auto">
 						<Button type="button" onClick={onBack}>
-							Previous
+							{m.buttons_previous()}
 						</Button>
-						<Button type="submit">Next</Button>
+						<Button type="submit">{m.buttons_next()}</Button>
 					</div>
 				</form>
 			</CardWrapper>

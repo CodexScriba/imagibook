@@ -3,30 +3,26 @@
 
 import type React from "react";
 import { createContext, useContext } from "react";
-import { useForm, type UseFormReturn, FormProvider } from "react-hook-form"; // Import FormProvider
+import { useForm, type UseFormReturn, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { formSchema, type FormValues } from "./schemas";
+import { step1Schema, type Step1Values } from "./schemas";
 
-type FormContextType = UseFormReturn<FormValues>;
+type FormContextType = UseFormReturn<Step1Values>;
 
 const FormContext = createContext<FormContextType | null>(null);
 
 export const FormDataProvider: React.FC<{ children: React.ReactNode }> = ({
 	children,
 }) => {
-	const methods = useForm<FormValues>({
-		resolver: zodResolver(formSchema),
+	const methods = useForm<Step1Values>({
+		resolver: zodResolver(step1Schema),
 		defaultValues: {
 			characters: [{ name: "", description: "" }],
-			mode: "magicWand",
-			storyOverview: "",
-			// Initialize other default values as needed
 		},
 	});
 
 	return (
 		<FormContext.Provider value={methods}>
-			{/* Wrap children with FormProvider */}
 			<FormProvider {...methods}>{children}</FormProvider>
 		</FormContext.Provider>
 	);
