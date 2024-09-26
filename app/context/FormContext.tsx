@@ -2,10 +2,8 @@
 
 import { createContext, useContext } from "react";
 import { useForm, type UseFormReturn, FormProvider } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { step1Schema, type Step1Values } from "./schemas";
 
-type FormContextType = UseFormReturn<Step1Values>;
+type FormContextType = UseFormReturn<any>; // Using 'any' to be schema-agnostic
 
 // Export FormContext
 export const FormContext = createContext<FormContextType | null>(null);
@@ -13,10 +11,10 @@ export const FormContext = createContext<FormContextType | null>(null);
 export const FormDataProvider: React.FC<{ children: React.ReactNode }> = ({
 	children,
 }) => {
-	const methods = useForm<Step1Values>({
-		resolver: zodResolver(step1Schema),
+	const methods = useForm({
 		defaultValues: {
 			characters: [{ name: "", description: "" }],
+			mode: "",
 		},
 	});
 

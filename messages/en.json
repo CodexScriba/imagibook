@@ -31,6 +31,7 @@
 	"creationMode_storybookStudio_title": "Storybook Studio",
 	"creationMode_storybookStudio_description": "Your personal writer's workshop to craft and fine-tune rich, detailed stories. Ideal for hands-on creators.",
 	"creationMode_description": "Select your creation mode ",
+	"creationMode_errors_required": "There has been, please contact admin",
 
 	"characters_legend": "Character Creation",
 	"characters_description": "Please provide a name and (optional) description of the main characters in your story.",

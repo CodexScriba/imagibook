@@ -2,7 +2,7 @@
 import * as z from "zod";
 import * as m from "@/paraglide/messages";
 
-// Merged schema for step 1 (characters)
+// Step 1 schema (characters)
 export const step1Schema = z.object({
 	characters: z
 		.array(
@@ -19,13 +19,13 @@ export const step1Schema = z.object({
 		.min(1, m.characters_errors_atLeastOne()),
 });
 
-// Type definitions
-export type Step1Values = z.infer<typeof step1Schema>;
+// Step 2 schema (creation mode)
+export const step2Schema = z.object({
+	mode: z.enum(["magicWand", "storybookStudio"], {
+		errorMap: () => ({ message: m.creationMode_errors_required() }),
+	}),
+});
 
-// Main form values type (include other steps as needed)
-export type FormValues = {
-	characters: Step1Values["characters"];
-	// Add other fields for other steps
-	// storyOverview?: string;
-	// ...
-};
+// Type definitions for each step
+export type Step1Values = z.infer<typeof step1Schema>;
+export type Step2Values = z.infer<typeof step2Schema>;

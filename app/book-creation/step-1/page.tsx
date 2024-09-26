@@ -1,3 +1,5 @@
+// app/book-creation/step-1/page.tsx
+
 "use client";
 
 import type React from "react";
@@ -8,19 +10,38 @@ import { useFormData } from "@/app/context/FormContext";
 import CardWrapper from "@/app/components/CardWrapper";
 import * as m from "@/paraglide/messages";
 import { UserPlus } from "lucide-react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { step1Schema } from "@/app/context/schemas";
+import { ZodError } from "zod";
 
 const Step1Page: React.FC = () => {
 	const methods = useFormData();
 	const router = useRouter();
 
-	const onSubmit = (data: {
-		characters: { name: string; description?: string }[];
-	}) => {
-		console.log("Step 1 Data:", data);
-		// You can store the data in a state management solution or pass it to the next step
-		router.push("/book-creation/step-2");
-	};
+	const onSubmit = async (data: { characters: unknown }) => {
+		try {
+			// Validate data for step 1
+			const validatedData = await step1Schema.parseAsync({
+				characters: data.characters,
+			});
 
+			// Update the form context with validated data
+			methods.reset({ ...methods.getValues(), ...validatedData });
+
+			// Proceed to next step
+			router.push("/book-creation/step-2");
+		} catch (error) {
+			if (error instanceof ZodError) {
+				const fieldErrors = error.flatten().fieldErrors;
+				for (const [field, messages] of Object.entries(fieldErrors)) {
+					methods.setError(field as keyof typeof data, {
+						type: "manual",
+						message: messages?.[0],
+					});
+				}
+			}
+		}
+	};
 	const onBack = () => {
 		router.back();
 	};

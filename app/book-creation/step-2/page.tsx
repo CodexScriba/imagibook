@@ -1,21 +1,46 @@
-// app/book-creation/step-2/page.tsx
+// app/book-creation/step-1/page.tsx
+
 "use client";
 
 import type React from "react";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import CreationModeSelector from "../components/CreationModeSelector";
+import Characters from "../components/Characters";
 import { useFormData } from "@/app/context/FormContext";
 import CardWrapper from "@/app/components/CardWrapper";
 import * as m from "@/paraglide/messages";
-import { ArrowRightLeft } from "lucide-react";
+import { UserPlus } from "lucide-react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { step1Schema } from "@/app/context/schemas";
+import { ZodError } from "zod";
 
-const Step2Page: React.FC = () => {
+const Step1Page: React.FC = () => {
 	const methods = useFormData();
 	const router = useRouter();
 
-	const onSubmit = (data: { mode: string }) => {
-		router.push("/book-creation/step-3");
+	const onSubmit = async (data: any) => {
+		try {
+			// Validate data for step 1
+			const validatedData = await step1Schema.parseAsync({
+				characters: data.characters,
+			});
+
+			// Update the form context with validated data
+			methods.reset({ ...methods.getValues(), ...validatedData });
+
+			// Proceed to next step
+			router.push("/book-creation/step-2");
+		} catch (error) {
+			if (error instanceof ZodError) {
+				const fieldErrors = error.flatten().fieldErrors;
+				Object.entries(fieldErrors).forEach(([field, messages]) => {
+					methods.setError(field as any, {
+						type: "manual",
+						message: messages?.[0],
+					});
+				});
+			}
+		}
 	};
 
 	const onBack = () => {
@@ -27,19 +52,19 @@ const Step2Page: React.FC = () => {
 			<CardWrapper
 				title={
 					<div className="flex items-center justify-center">
-						<ArrowRightLeft className="mr-2" />
-						<span>{m.creationMode_legend()}</span>
+						<UserPlus className="mr-2" />
+						<span>{m.characters_legend()}</span>
 					</div>
 				}
-				description={m.creationMode_description()}
+				description={m.characters_description()}
 			>
 				<form onSubmit={methods.handleSubmit(onSubmit)} className="space-y-6">
-					<CreationModeSelector />
+					<Characters />
 					<div className="flex justify-between mt-auto">
 						<Button type="button" onClick={onBack}>
-							Previous
+							{m.buttons_previous()}
 						</Button>
-						<Button type="submit">Next</Button>
+						<Button type="submit">{m.buttons_next()}</Button>
 					</div>
 				</form>
 			</CardWrapper>
@@ -47,4 +72,4 @@ const Step2Page: React.FC = () => {
 	);
 };
 
-export default Step2Page;
+export default Step1Page;

@@ -9,11 +9,15 @@ import {
 	CardTitle,
 	CardDescription,
 } from "@/components/ui/card";
-import { Wand2, BookOpen, ArrowRightLeft } from "lucide-react";
+import { Wand2, BookOpen } from "lucide-react";
 import * as m from "@/paraglide/messages";
 
 const CreationModeSelector: React.FC = () => {
-	const { register, watch } = useFormContext();
+	const {
+		register,
+		watch,
+		formState: { errors },
+	} = useFormContext();
 	const mode = watch("mode");
 
 	const options = [
@@ -45,7 +49,9 @@ const CreationModeSelector: React.FC = () => {
 						<label className="block h-full cursor-pointer">
 							<CardHeader className="py-2">
 								<CardTitle
-									className="flex items-center text-sm font-semibold"
+									className={`flex items-center font-semibold ${
+										mode === item.id ? "text-lg" : "text-sm"
+									}`}
 									id={`${item.id}-label`}
 								>
 									<item.icon className="w-5 h-5 mr-2" />
@@ -53,7 +59,9 @@ const CreationModeSelector: React.FC = () => {
 								</CardTitle>
 							</CardHeader>
 							<CardContent className="py-2">
-								<CardDescription className="text-xs">
+								<CardDescription
+									className={`${mode === item.id ? "text-base" : "text-xs"}`}
+								>
 									{item.description}
 								</CardDescription>
 								<input
@@ -69,6 +77,9 @@ const CreationModeSelector: React.FC = () => {
 					</Card>
 				))}
 			</div>
+			{errors.mode && (
+				<p className="text-sm text-red-500 mt-2">{errors.mode.message}</p>
+			)}
 		</fieldset>
 	);
 };
