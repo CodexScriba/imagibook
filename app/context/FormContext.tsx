@@ -1,7 +1,5 @@
 // context/FormContext.tsx
-"use client";
 
-import type React from "react";
 import { createContext, useContext } from "react";
 import { useForm, type UseFormReturn, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -9,7 +7,8 @@ import { step1Schema, type Step1Values } from "./schemas";
 
 type FormContextType = UseFormReturn<Step1Values>;
 
-const FormContext = createContext<FormContextType | null>(null);
+// Export FormContext
+export const FormContext = createContext<FormContextType | null>(null);
 
 export const FormDataProvider: React.FC<{ children: React.ReactNode }> = ({
 	children,

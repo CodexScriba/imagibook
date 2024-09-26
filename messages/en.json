@@ -4,6 +4,8 @@
 	"siteDescription": "Tales and bedtime stories using AI",
 	"homePageTitle": "ImagiBook.ai - AI-Generated Stories | English",
 	"homePageDescription": "Discover unique AI-generated bedtime stories and tales on ImagiBook.ai",
+	"buttons_previous": "Previous",
+	"buttons_next": "Next",
 
 	"navbar_home": "Home",
 	"navbar_howItWorks": "How it works?",
@@ -38,8 +40,10 @@
 	"characters_placeholders_description": "3-year-old blonde, green eyes.",
 	"characters_buttons_remove": "Remove Character",
 	"characters_buttons_add": "Add Character",
-	"characters_errors_nameRequired": "Name is required",
+	"characters_errors_nameRequired": "Name is required and must contain at least two letters.",
 	"characters_errors_atLeastOne": "At least one character is required",
+
+	"characters_success_nameValid": "Name looks good!",
 
 	"storyOverview_label": "Story Overview: Set the Scene for Your Tale",
 	"storyOverview_description": "Tell us what happens in the story.",

@@ -1,4 +1,3 @@
-// app/book-creation/step-1/page.tsx
 "use client";
 
 import type React from "react";
@@ -8,7 +7,7 @@ import Characters from "../components/Characters";
 import { useFormData } from "@/app/context/FormContext";
 import CardWrapper from "@/app/components/CardWrapper";
 import * as m from "@/paraglide/messages";
-import { UserRoundPlus } from "lucide-react";
+import { UserPlus } from "lucide-react";
 
 const Step1Page: React.FC = () => {
 	const methods = useFormData();
@@ -31,7 +30,7 @@ const Step1Page: React.FC = () => {
 			<CardWrapper
 				title={
 					<div className="flex items-center justify-center">
-						<UserRoundPlus className="mr-2" />
+						<UserPlus className="mr-2" />
 						<span>{m.characters_legend()}</span>
 					</div>
 				}
