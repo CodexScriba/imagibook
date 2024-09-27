@@ -1,34 +1,41 @@
+/**
+ * Provides a React context for managing form data in the application.
+ *
+ * The `FormContext` context exposes the current form data and a function to update it.
+ * The `FormDataProvider` component is used to wrap the parts of the application that need access to the form data.
+ * The `useFormData` hook can be used to access the form data and update function within the context.
+ */
 // context/FormContext.tsx
 
-import { createContext, useContext } from "react";
-import { useForm, type UseFormReturn, FormProvider } from "react-hook-form";
-import { FormValues } from "./schemas";
+import { createContext, useContext, useState } from "react";
+import type { FormValues } from "./schemas";
 
-type FormContextType = UseFormReturn<FormValues>;
+type FormContextType = {
+	formData: FormValues;
+	setFormData: React.Dispatch<React.SetStateAction<FormValues>>;
+};
 
 export const FormContext = createContext<FormContextType | null>(null);
 
 export const FormDataProvider: React.FC<{ children: React.ReactNode }> = ({
-  children,
+	children,
 }) => {
-  const methods = useForm<FormValues>({
-    defaultValues: {
-      characters: [{ name: "", description: "" }],
-      mode: "undefined",
-    },
-  });
+	const [formData, setFormData] = useState<FormValues>({
+		characters: [{ name: "", description: "" }],
+		mode: "magicWand",
+	});
 
-  return (
-    <FormContext.Provider value={methods}>
-      <FormProvider {...methods}>{children}</FormProvider>
-    </FormContext.Provider>
-  );
+	return (
+		<FormContext.Provider value={{ formData, setFormData }}>
+			{children}
+		</FormContext.Provider>
+	);
 };
 
 export const useFormData = () => {
-  const context = useContext(FormContext);
-  if (!context) {
-    throw new Error("useFormData must be used within a FormDataProvider");
-  }
-  return context;
+	const context = useContext(FormContext);
+	if (!context) {
+		throw new Error("useFormData must be used within a FormDataProvider");
+	}
+	return context;
 };

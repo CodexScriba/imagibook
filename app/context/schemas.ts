@@ -1,43 +1,41 @@
+/**
+ * This file defines the Zod schemas and types for the form data used in the application.
+ *
+ * The `step1Schema` defines the schema for the first step of the form, which includes an array of character objects with a name and optional description.
+ *
+ * The `step2Schema` defines the schema for the second step of the form, which includes an enum for the creation mode.
+ *
+ * The `FormValues` type explicitly defines the shape of the form data, which includes the characters array and the creation mode.
+ */
 // schemas.ts
 
 import * as z from "zod";
-import * m from "@/paraglide/messages";
+import * as m from "@/paraglide/messages";
 
-//interfaces
-//step1
-export interface Step1Values {
-	characters: {
-		name: string;
-		description?:string;
-	}[];
-}
-//Step2
-export interface Step2Values {
-	mode: "magicWand" | "storybookStudio"
-};
-
-//Step 1 schema (characters)
+// Step 1 schema (characters)
 export const step1Schema = z.object({
 	characters: z
-	  .array(
-		z.object({
-		  name: z
-			.string()
-			.min(2, m.characters_errors_nameRequired())
-			.refine((val) => (val.match(/[A-Za-z]/g) || []).length >= 2, {
-			  message: m.characters_errors_nameRequired(),
+		.array(
+			z.object({
+				name: z.string().min(2, m.characters_errors_nameRequired()),
+				description: z.string().optional(),
 			}),
-		  description: z.string().optional(),
-		})
-	  )
-	  .min(1, m.characters_errors_atLeastOne()),
-  });
+		)
+		.min(1, m.characters_errors_atLeastOne()),
+});
 
-  // Step 2 schema (creation mode)
+// Step 2 schema (creation mode)
 export const step2Schema = z.object({
 	mode: z.enum(["magicWand", "storybookStudio"], {
-	  errorMap: () => ({ message: m.creationMode_errors_required() }),
+		errorMap: () => ({ message: m.creationMode_errors_required() }),
 	}),
-  });
-  
-  export interface FormValues extends Partial<Step1Values>, Partial<Step2Values> {}
+});
+
+// Define FormValues explicitly
+export type FormValues = {
+	characters: {
+		name: string;
+		description?: string;
+	}[];
+	mode?: "magicWand" | "storybookStudio";
+};
