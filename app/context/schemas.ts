@@ -40,3 +40,4 @@ export const step2Schema = z.object({
 	}),
   });
   
+  export interface FormValues extends Partial<Step1Values>, Partial<Step2Values> {}
