@@ -16,7 +16,7 @@ import * as m from "@/paraglide/messages";
 import type { FormValues } from "@/app/context/schemas";
 
 const CreationModeSelector: React.FC = () => {
-	const { register, watch, formState } = useFormContext<FormValues>();
+	const { register, watch, setValue, formState } = useFormContext<FormValues>();
 	const mode = watch("mode") || "";
 
 	const options = [
@@ -34,23 +34,29 @@ const CreationModeSelector: React.FC = () => {
 		},
 	];
 
+	const handleCardClick = (id: "magicWand" | "storybookStudio") => {
+		setValue("mode", id, { shouldValidate: true });
+	};
 	return (
 		<fieldset className="space-y-4">
 			<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 				{options.map((item) => (
 					<Card
 						key={item.id}
-						className={`cursor-pointer transition-all ${
-							mode === item.id ? "border-primary" : ""
+						className={`cursor-pointer transition-all duration-300 ease-in-out ${
+							mode === item.id
+								? "border-2 border-purple-500 shadow-[0_0_10px_rgba(168,85,247,0.5)]"
+								: "border border-gray-300 hover:border-purple-300"
 						}`}
 						data-testid={`${item.id}-card`}
+						onClick={() =>
+							handleCardClick(item.id as "magicWand" | "storybookStudio")
+						}
 					>
 						<label className="block h-full cursor-pointer">
 							<CardHeader className="py-2">
 								<CardTitle
-									className={`flex items-center font-semibold ${
-										mode === item.id ? "text-lg" : "text-sm"
-									}`}
+									className="flex items-center font-semibold text-lg"
 									id={`${item.id}-label`}
 								>
 									<item.icon className="w-5 h-5 mr-2" />
@@ -58,9 +64,7 @@ const CreationModeSelector: React.FC = () => {
 								</CardTitle>
 							</CardHeader>
 							<CardContent className="py-2">
-								<CardDescription
-									className={`${mode === item.id ? "text-base" : "text-xs"}`}
-								>
+								<CardDescription className="text-base">
 									{item.description}
 								</CardDescription>
 								<input
