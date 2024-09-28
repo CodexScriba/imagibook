@@ -15,6 +15,17 @@ import { Wand2, BookOpen } from "lucide-react";
 import * as m from "@/paraglide/messages";
 import type { FormValues } from "@/app/context/schemas";
 
+/**
+ * Imports a set of UI components for rendering a card-like layout.
+ * These components include:
+ * - `Card`: The main container for the card.
+ * - `CardContent`: The content area inside the card.
+ * - `CardHeader`: The header section of the card.
+ * - `CardTitle`: The title element within the card header.
+ * - `CardDescription`: The description element within the card.
+ * These components can be used to create a consistent and visually appealing card-based UI in the application.
+ */
+
 const CreationModeSelector: React.FC = () => {
 	const { register, watch, setValue, formState } = useFormContext<FormValues>();
 	const mode = watch("mode") || "";

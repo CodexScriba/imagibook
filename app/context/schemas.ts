@@ -37,5 +37,5 @@ export type FormValues = {
 		name: string;
 		description?: string;
 	}[];
-	mode?: "magicWand" | "storybookStudio";
+	mode: "magicWand" | "storybookStudio"; 
 };

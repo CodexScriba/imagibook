@@ -7,6 +7,8 @@
  */
 // context/FormContext.tsx
 
+// context/FormContext.tsx
+
 import { createContext, useContext, useState } from "react";
 import type { FormValues } from "./schemas";
 
@@ -17,13 +19,21 @@ type FormContextType = {
 
 export const FormContext = createContext<FormContextType | null>(null);
 
-export const FormDataProvider: React.FC<{ children: React.ReactNode }> = ({
+interface FormDataProviderProps {
+	children: React.ReactNode;
+	initialData?: FormValues;
+}
+
+export const FormDataProvider: React.FC<FormDataProviderProps> = ({
 	children,
+	initialData,
 }) => {
-	const [formData, setFormData] = useState<FormValues>({
-		characters: [{ name: "", description: "" }],
-		mode: "magicWand",
-	});
+	const [formData, setFormData] = useState<FormValues>(
+		initialData || {
+			characters: [{ name: "", description: "" }],
+			mode: "magicWand",
+		},
+	);
 
 	return (
 		<FormContext.Provider value={{ formData, setFormData }}>
