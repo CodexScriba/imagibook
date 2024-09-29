@@ -49,7 +49,7 @@ describe("Step2Page", () => {
 		expect(previousButton).toBeInTheDocument();
 	});
 
-	it("calls router.back when Previous button is clicked", () => {
+	it("navigates to step-1 when Previous button is clicked", () => {
 		render(
 			<FormDataProvider>
 				<Step2Page />
@@ -59,7 +59,8 @@ describe("Step2Page", () => {
 		const previousButton = screen.getByRole("button", { name: /previous/i });
 		fireEvent.click(previousButton);
 
-		expect(mockBack).toHaveBeenCalledTimes(1);
+		expect(mockPush).toHaveBeenCalledTimes(1);
+		expect(mockPush).toHaveBeenCalledWith("/book-creation/step-1");
 	});
 
 	it("submits the form and navigates to the next step on valid submission", async () => {

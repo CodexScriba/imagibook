@@ -47,9 +47,11 @@
 	"characters_success_nameValid": "Name looks good!",
 
 	"storyOverview_label": "Story Overview: Set the Scene for Your Tale",
-	"storyOverview_description": "Tell us what happens in the story.",
-	"storyOverview_example": "Noah gets his first bike. He's nervous and unsure if he can ride it. His father patiently teaches him, and his mother encourages him. Noah overcomes his fear and learns to ride confidently, bringing the family closer.",
-	"storyOverview_errors_minLength": "Story Overview must be at least 100 characters long",
+	"storyOverview_placeholder": "- Noah receives a new bike as a present from his grandma\n- Dad offers to teach Noah how to ride\n- Noah feels scared at first\n- With practice, Noah succeeds in riding the bike\n- Noah has a lot of fun playing with his new bike\n- He grows to love his new gift \n - Make the story so it ends with Noah thanking grandma for his present.",
+	"storyOverview_errors_maxLength": "Story Overview must not exceed 100 characters.",
+	"storyOverview_errors_required": "Story Overview is required.",
+	"step3_title": "Step 3: Story Overview",
+	"step3_description": "Provide a brief overview of your story to set the scene.",
 
 	"steps_next_button": "Next"
 }

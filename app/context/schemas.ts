@@ -31,11 +31,19 @@ export const step2Schema = z.object({
 	}),
 });
 
+//Step 3 schema (Story Overview)
+export const step3Schema = z.object({
+	storyOverview: z
+		.string()
+		.max(100, m.storyOverview_errors_maxLength())
+		.min(1, { message: m.storyOverview_errors_required() }),
+});
 // Define FormValues explicitly
 export type FormValues = {
 	characters: {
 		name: string;
 		description?: string;
 	}[];
-	mode: "magicWand" | "storybookStudio"; 
+	mode: "magicWand" | "storybookStudio";
+	storyOverview: string;
 };

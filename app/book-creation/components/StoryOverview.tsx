@@ -1,48 +1,36 @@
-// components/StoryOverview.tsx
+// components/StoryOrverview.tsx
+
 "use client";
 
 import type React from "react";
-import { useFormContext, Controller } from "react-hook-form";
-import { Textarea } from "@/components/ui/textarea"; // Adjust the import path as needed
+import { useFormContext } from "react-hook-form";
+import { Textarea } from "@/components/ui/textarea"; // Assuming shadcn's Textarea is exported from this path
 import { Label } from "@/components/ui/label";
-import { BookOpen } from "lucide-react"; // Example icon import
-import { cn } from "@/lib/utils"; // Utility for conditional classNames
-import * as m from "@/paraglide/messages"; // Importing internationalized messages
+import type { FormValues } from "@/app/context/schemas";
+import * as m from "@/paraglide/messages";
 
 const StoryOverview: React.FC = () => {
 	const {
-		control,
+		register,
 		formState: { errors },
-	} = useFormContext();
+	} = useFormContext<FormValues>();
 
 	return (
 		<div className="space-y-4">
-			<legend className="text-lg font-semibold flex items-center space-x-2">
-				<BookOpen className="w-5 h-5" />
-				<span>{m.storyOverview_label()}</span>
-			</legend>
-			<p className="text-sm text-muted-foreground">
-				{m.storyOverview_description()}
-			</p>
-			<Controller
-				name="storyOverview"
-				control={control}
-				render={({ field }) => (
-					<Textarea
-						{...field}
-						id="storyOverview"
-						placeholder={m.storyOverview_example()}
-						className={cn(
-							"mt-1",
-							errors.storyOverview ? "border-red-500" : "border-gray-300",
-						)}
-						rows={6}
-					/>
-				)}
+			<Label htmlFor="storyOverview">{m.storyOverview_label()}</Label>
+			<Textarea
+				id="storyOverview"
+				{...register("storyOverview")}
+				placeholder={m.storyOverview_placeholder()}
+				aria-invalid={!!errors.storyOverview}
+				aria-describedby={
+					errors.storyOverview ? "storyOverview-error" : undefined
+				}
+				className="resize-none h-44"
 			/>
 			{errors.storyOverview && (
-				<p className="text-sm text-red-600">
-					{m.storyOverview_errors_minLength()}
+				<p id="storyOverview-error" className="text-sm text-red-500">
+					{errors.storyOverview.message}
 				</p>
 			)}
 		</div>

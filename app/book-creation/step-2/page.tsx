@@ -43,7 +43,7 @@ const Step2Page: React.FC = () => {
 	};
 
 	const onBack = () => {
-		router.back();
+		router.push("/book-creation/step-1");
 	};
 
 	return (
