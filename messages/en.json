@@ -43,6 +43,16 @@
 	"characters_buttons_add": "Add Character",
 	"characters_errors_nameRequired": "Name is required and must contain at least two letters.",
 	"characters_errors_atLeastOne": "At least one character is required",
+	"characters_labels_isMainCharacter": "This is a main character",
+	"characters_labels_ageGroup": "Age Group",
+	"characters_errors_ageGroupRequired": "Age group is required",
+	"characters_placeholders_ageGroup": "Select an age group",
+	"characters_ageGroup_baby": "Baby 0-1",
+	"characters_ageGroup_toddler": "Toddler 1-3",
+	"characters_ageGroup_kid": "Kid 3-12",
+	"characters_ageGroup_teen": "Teen 13-19",
+	"characters_ageGroup_adult": "Adult 20-65",
+	"characters_ageGroup_elderly": "Elderly 65+",
 
 	"characters_success_nameValid": "Name looks good!",
 

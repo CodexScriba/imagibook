@@ -3,7 +3,7 @@
 "use client";
 
 import type React from "react";
-import { useFieldArray, useFormContext } from "react-hook-form";
+import { Controller, useFieldArray, useFormContext } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -11,6 +11,14 @@ import { Plus, X } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import * as m from "@/paraglide/messages";
 import type { FormValues } from "@/app/context/schemas";
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/components/ui/select";
+import { Switch } from "@/components/ui/switch";
 
 // Component to display error messages
 const ErrorMessage: React.FC<{ id?: string; message?: string }> = ({
@@ -50,7 +58,7 @@ const Characters: React.FC = () => {
 		<div className="space-y-6">
 			{fields.map((field, index) => (
 				<div key={field.id} className="space-y-4">
-					{/* Name Field */}
+					{/* Name Field and Remove Button */}
 					<div className="flex items-start">
 						<div className="flex-grow">
 							<Label htmlFor={`characters.${index}.name`}>
@@ -94,6 +102,85 @@ const Characters: React.FC = () => {
 						</Button>
 					</div>
 
+					{/* isMainCharacter Switch */}
+					<Controller
+						control={control}
+						name={`characters.${index}.isMainCharacter` as const}
+						render={({ field }) => (
+							<div className="flex items-center">
+								<Switch
+									id={`characters.${index}.isMainCharacter`}
+									checked={field.value}
+									onCheckedChange={field.onChange}
+								/>
+								<Label
+									htmlFor={`characters.${index}.isMainCharacter`}
+									className="ml-2"
+								>
+									{m.characters_labels_isMainCharacter()}
+								</Label>
+							</div>
+						)}
+					/>
+
+					{/* Age Group Select */}
+					<Controller
+						control={control}
+						name={`characters.${index}.ageGroup` as const}
+						render={({ field }) => (
+							<div className="w-full">
+								<Label htmlFor={`characters.${index}.ageGroup`}>
+									{m.characters_labels_ageGroup()}
+								</Label>
+								<Select
+									value={field.value}
+									onValueChange={(value) => {
+										field.onChange(value);
+									}}
+								>
+									<SelectTrigger
+										id={`characters.${index}.ageGroup`}
+										aria-invalid={!!errors.characters?.[index]?.ageGroup}
+										aria-describedby={
+											errors.characters?.[index]?.ageGroup
+												? `characters.${index}.ageGroup-error`
+												: undefined
+										}
+									>
+										<SelectValue
+											placeholder={m.characters_placeholders_ageGroup()}
+										/>
+									</SelectTrigger>
+									<SelectContent>
+										<SelectItem value="Baby 0-1">
+											{m.characters_ageGroup_baby()}
+										</SelectItem>
+										<SelectItem value="Toddler 1-3">
+											{m.characters_ageGroup_toddler()}
+										</SelectItem>
+										<SelectItem value="Kid 3-12">
+											{m.characters_ageGroup_kid()}
+										</SelectItem>
+										<SelectItem value="Teen 13-19">
+											{m.characters_ageGroup_teen()}
+										</SelectItem>
+										<SelectItem value="Adult 20-65">
+											{m.characters_ageGroup_adult()}
+										</SelectItem>
+										<SelectItem value="Elderly 65+">
+											{m.characters_ageGroup_elderly()}
+										</SelectItem>
+									</SelectContent>
+								</Select>
+								{/* Error Message for Age Group */}
+								<ErrorMessage
+									id={`characters.${index}.ageGroup-error`}
+									message={errors.characters?.[index]?.ageGroup?.message}
+								/>
+							</div>
+						)}
+					/>
+
 					{/* Description Field */}
 					<div className="w-full">
 						<Label htmlFor={`characters.${index}.description`}>
@@ -124,7 +211,14 @@ const Characters: React.FC = () => {
 					type="button"
 					variant="secondary"
 					size="lg"
-					onClick={() => append({ name: "", description: "" })}
+					onClick={() =>
+						append({
+							name: "",
+							isMainCharacter: fields.length === 0, // Set to true only if it's the first character
+							ageGroup: "",
+							description: "",
+						})
+					}
 					className="w-full max-w-sm"
 				>
 					<Plus className="h-5 w-5 mr-2" />

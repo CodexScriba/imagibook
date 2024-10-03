@@ -6,7 +6,6 @@
  * The `useFormData` hook can be used to access the form data and update function within the context.
  */
 // context/FormContext.tsx
-
 // context/FormContext.tsx
 
 import { createContext, useContext, useState } from "react";
@@ -30,8 +29,14 @@ export const FormDataProvider: React.FC<FormDataProviderProps> = ({
 }) => {
 	const [formData, setFormData] = useState<FormValues>(
 		initialData || {
-			characters: [{ name: "", description: "" }],
-			mode: "magicWand",
+			characters: [
+				{
+					name: "",
+					isMainCharacter: true, // This remains true for the first character
+					ageGroup: "",
+					description: "",
+				},
+			],
 		},
 	);
 

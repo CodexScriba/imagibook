@@ -7,6 +7,7 @@
  *
  * The `FormValues` type explicitly defines the shape of the form data, which includes the characters array and the creation mode.
  */
+
 // schemas.ts
 
 import * as z from "zod";
@@ -18,32 +19,29 @@ export const step1Schema = z.object({
 		.array(
 			z.object({
 				name: z.string().min(2, m.characters_errors_nameRequired()),
+				isMainCharacter: z.boolean().default(true),
+				ageGroup: z
+					.enum([
+						"Baby 0-1",
+						"Toddler 1-3",
+						"Kid 3-12",
+						"Teen 13-19",
+						"Adult 20-65",
+						"Elderly 65+",
+					])
+					.optional(),
 				description: z.string().optional(),
 			}),
 		)
 		.min(1, m.characters_errors_atLeastOne()),
 });
 
-// Step 2 schema (creation mode)
-export const step2Schema = z.object({
-	mode: z.enum(["magicWand", "storybookStudio"], {
-		errorMap: () => ({ message: m.creationMode_errors_required() }),
-	}),
-});
-
-//Step 3 schema (Story Overview)
-export const step3Schema = z.object({
-	storyOverview: z
-		.string()
-		.max(100, m.storyOverview_errors_maxLength())
-		.min(1, { message: m.storyOverview_errors_required() }),
-});
 // Define FormValues explicitly
 export type FormValues = {
 	characters: {
 		name: string;
+		isMainCharacter: boolean;
+		ageGroup: string;
 		description?: string;
 	}[];
-	mode: "magicWand" | "storybookStudio";
-	storyOverview: string;
 };

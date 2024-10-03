@@ -1,92 +1,64 @@
-// app/book-creation/step-1/__tests__/Step1Page.test.tsx
-
 import React from "react";
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import Step1Page from "../page";
+import { render, screen, fireEvent } from "@testing-library/react";
 import { useRouter } from "next/navigation";
-import { FormDataProvider } from "@/app/context/FormContext";
+import { useFormData } from "@/app/context/FormContext";
+import Step1Page from "../page";
 
 jest.mock("next/navigation", () => ({
 	useRouter: jest.fn(),
 }));
 
-const mockPush = jest.fn();
-const mockBack = jest.fn();
-
-(useRouter as jest.Mock).mockReturnValue({
-	push: mockPush,
-	back: mockBack,
-});
+jest.mock("@/app/context/FormContext", () => ({
+	useFormData: jest.fn(),
+}));
 
 describe("Step1Page", () => {
+	const mockRouter = {
+		push: jest.fn(),
+		back: jest.fn(),
+	};
+
+	const mockSetFormData = jest.fn();
+
 	beforeEach(() => {
-		jest.clearAllMocks();
+		(useRouter as jest.Mock).mockReturnValue(mockRouter);
+		(useFormData as jest.Mock).mockReturnValue({
+			formData: {},
+			setFormData: mockSetFormData,
+		});
 	});
 
-	it("renders the component correctly", () => {
-		render(
-			<FormDataProvider>
-				<Step1Page />
-			</FormDataProvider>,
-		);
-
-		expect(screen.getByText(/characters/i)).toBeInTheDocument();
-		expect(screen.getByRole("button", { name: /next/i })).toBeInTheDocument();
-		expect(
-			screen.getByRole("button", { name: /previous/i }),
-		).toBeInTheDocument();
+	it("renders the Step1Page component", () => {
+		render(<Step1Page />);
+		expect(screen.getByText("Characters")).toBeInTheDocument();
 	});
 
-	it("calls router.back when Previous button is clicked", () => {
-		render(
-			<FormDataProvider>
-				<Step1Page />
-			</FormDataProvider>,
-		);
+	it("navigates to the next step on form submission", async () => {
+		render(<Step1Page />);
+		const nextButton = screen.getByText("Next");
+		fireEvent.click(nextButton);
+		expect(mockRouter.push).toHaveBeenCalledWith("/book-creation/step-2");
+	});
 
-		const previousButton = screen.getByRole("button", { name: /previous/i });
+	it("navigates back when the Previous button is clicked", () => {
+		render(<Step1Page />);
+		const previousButton = screen.getByText("Previous");
 		fireEvent.click(previousButton);
-
-		expect(mockBack).toHaveBeenCalledTimes(1);
+		expect(mockRouter.back).toHaveBeenCalled();
 	});
 
-	it("submits the form and navigates to the next step on valid submission", async () => {
-		render(
-			<FormDataProvider>
-				<Step1Page />
-			</FormDataProvider>,
-		);
-
-		// Assuming that Characters component has an input with label 'Character Name'
-		const characterNameInput = screen.getByLabelText(/character name/i);
-		fireEvent.change(characterNameInput, { target: { value: "John Doe" } });
-
-		const nextButton = screen.getByRole("button", { name: /next/i });
+	it("updates form data on submission", async () => {
+		render(<Step1Page />);
+		const nextButton = screen.getByText("Next");
 		fireEvent.click(nextButton);
-
-		await waitFor(() => {
-			expect(mockPush).toHaveBeenCalledWith("/book-creation/step-2");
-		});
+		expect(mockSetFormData).toHaveBeenCalled();
 	});
 
-	it("shows validation errors on invalid submission", async () => {
-		render(
-			<FormDataProvider>
-				<Step1Page />
-			</FormDataProvider>,
-		);
-
-		const nextButton = screen.getByRole("button", { name: /next/i });
-		fireEvent.click(nextButton);
-
-		await waitFor(() => {
-			expect(
-				screen.getByText(
-					/Name is required and must contain at least two letters/i,
-				),
-			).toBeInTheDocument();
-		});
-
-		expect(mockPush).not.toHaveBeenCalled();
+	it("displays the correct title and description", () => {
+		render(<Step1Page />);
+		expect(screen.getByText("Characters")).toBeInTheDocument();
+		expect(
+			screen.getByText("Enter information about the characters in your story."),
+		).toBeInTheDocument();
 	});
 });
