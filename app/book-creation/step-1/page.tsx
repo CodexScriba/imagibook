@@ -1,12 +1,3 @@
-/**
- * The `Step1Page` component is the first step in the book creation process. It allows the user to input character information and navigate to the next step.
- *
- * The component uses the `useFormData` hook to access and update the form data in the application context. It also uses the `useForm` hook from `react-hook-form` to manage the form state and validation.
- *
- * The component renders a `CardWrapper` component with a title and description, and a form with a `Characters` component for inputting character information. The form also includes "Previous" and "Next" buttons to navigate between steps.
- *
- * When the user submits the form, the `onSubmit` function is called, which updates the form data in the application context and navigates to the next step in the book creation process.
- */
 // app/book-creation/step-1/page.tsx
 
 "use client";
