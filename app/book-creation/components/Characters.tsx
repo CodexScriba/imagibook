@@ -58,8 +58,8 @@ const Characters: React.FC = () => {
 		<div className="space-y-6">
 			{fields.map((field, index) => (
 				<div key={field.id} className="space-y-4">
-					{/* Name Field and Remove Button */}
-					<div className="flex items-start">
+					{/* Name Field, Age Group Select, and Remove Button */}
+					<div className="flex items-start space-x-4">
 						<div className="flex-grow">
 							<Label htmlFor={`characters.${index}.name`}>
 								{m.characters_labels_name()}
@@ -84,6 +84,54 @@ const Characters: React.FC = () => {
 								message={errors.characters?.[index]?.name?.message}
 							/>
 						</div>
+						<div className="flex-grow">
+							<Controller
+								control={control}
+								name={`characters.${index}.ageGroup` as const}
+								render={({ field }) => (
+									<div>
+										<Label htmlFor={`characters.${index}.ageGroup`}>
+											{m.characters_labels_ageGroup()}
+										</Label>
+										<Select
+											value={field.value}
+											onValueChange={(value) => {
+												field.onChange(value);
+											}}
+										>
+											<SelectTrigger id={`characters.${index}.ageGroup`}>
+												<SelectValue
+													placeholder={m.characters_placeholders_ageGroup()}
+												/>
+											</SelectTrigger>
+											<SelectContent>
+												<SelectItem value=" ">
+													{m.characters_placeholders_ageGroup()}
+												</SelectItem>
+												<SelectItem value="Baby 0-1">
+													{m.characters_ageGroup_baby()}
+												</SelectItem>
+												<SelectItem value="Toddler 1-3">
+													{m.characters_ageGroup_toddler()}
+												</SelectItem>
+												<SelectItem value="Kid 3-12">
+													{m.characters_ageGroup_kid()}
+												</SelectItem>
+												<SelectItem value="Teen 13-19">
+													{m.characters_ageGroup_teen()}
+												</SelectItem>
+												<SelectItem value="Adult 20-65">
+													{m.characters_ageGroup_adult()}
+												</SelectItem>
+												<SelectItem value="Elderly 65+">
+													{m.characters_ageGroup_elderly()}
+												</SelectItem>
+											</SelectContent>
+										</Select>
+									</div>
+								)}
+							/>
+						</div>
 						<Button
 							type="button"
 							variant="ghost"
@@ -103,83 +151,27 @@ const Characters: React.FC = () => {
 					</div>
 
 					{/* isMainCharacter Switch */}
-					<Controller
-						control={control}
-						name={`characters.${index}.isMainCharacter` as const}
-						render={({ field }) => (
-							<div className="flex items-center">
-								<Switch
-									id={`characters.${index}.isMainCharacter`}
-									checked={field.value}
-									onCheckedChange={field.onChange}
-								/>
-								<Label
-									htmlFor={`characters.${index}.isMainCharacter`}
-									className="ml-2"
-								>
-									{m.characters_labels_isMainCharacter()}
-								</Label>
-							</div>
-						)}
-					/>
-
-					{/* Age Group Select */}
-					<Controller
-						control={control}
-						name={`characters.${index}.ageGroup` as const}
-						render={({ field }) => (
-							<div className="w-full">
-								<Label htmlFor={`characters.${index}.ageGroup`}>
-									{m.characters_labels_ageGroup()}
-								</Label>
-								<Select
-									value={field.value}
-									onValueChange={(value) => {
-										field.onChange(value);
-									}}
-								>
-									<SelectTrigger
-										id={`characters.${index}.ageGroup`}
-										aria-invalid={!!errors.characters?.[index]?.ageGroup}
-										aria-describedby={
-											errors.characters?.[index]?.ageGroup
-												? `characters.${index}.ageGroup-error`
-												: undefined
-										}
+					<div className="flex items-center mt-2">
+						<Controller
+							control={control}
+							name={`characters.${index}.isMainCharacter` as const}
+							render={({ field }) => (
+								<>
+									<Switch
+										id={`characters.${index}.isMainCharacter`}
+										checked={field.value}
+										onCheckedChange={field.onChange}
+									/>
+									<Label
+										htmlFor={`characters.${index}.isMainCharacter`}
+										className="ml-2 whitespace-nowrap"
 									>
-										<SelectValue
-											placeholder={m.characters_placeholders_ageGroup()}
-										/>
-									</SelectTrigger>
-									<SelectContent>
-										<SelectItem value="Baby 0-1">
-											{m.characters_ageGroup_baby()}
-										</SelectItem>
-										<SelectItem value="Toddler 1-3">
-											{m.characters_ageGroup_toddler()}
-										</SelectItem>
-										<SelectItem value="Kid 3-12">
-											{m.characters_ageGroup_kid()}
-										</SelectItem>
-										<SelectItem value="Teen 13-19">
-											{m.characters_ageGroup_teen()}
-										</SelectItem>
-										<SelectItem value="Adult 20-65">
-											{m.characters_ageGroup_adult()}
-										</SelectItem>
-										<SelectItem value="Elderly 65+">
-											{m.characters_ageGroup_elderly()}
-										</SelectItem>
-									</SelectContent>
-								</Select>
-								{/* Error Message for Age Group */}
-								<ErrorMessage
-									id={`characters.${index}.ageGroup-error`}
-									message={errors.characters?.[index]?.ageGroup?.message}
-								/>
-							</div>
-						)}
-					/>
+										{m.characters_labels_isMainCharacter()}
+									</Label>
+								</>
+							)}
+						/>
+					</div>
 
 					{/* Description Field */}
 					<div className="w-full">
@@ -192,7 +184,7 @@ const Characters: React.FC = () => {
 								{...register(`characters.${index}.description`)}
 								placeholder={m.characters_placeholders_description()}
 								className="w-full"
-								aria-invalid={!!errors.characters?.[index]?.description}
+								// Removed aria-invalid for optional field
 							/>
 						</div>
 						{/* No Error Message for Description */}

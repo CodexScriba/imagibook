@@ -1,11 +1,3 @@
-/**
- * Provides a React context for managing form data in the application.
- *
- * The `FormContext` context exposes the current form data and a function to update it.
- * The `FormDataProvider` component is used to wrap the parts of the application that need access to the form data.
- * The `useFormData` hook can be used to access the form data and update function within the context.
- */
-// context/FormContext.tsx
 // context/FormContext.tsx
 
 import { createContext, useContext, useState } from "react";
