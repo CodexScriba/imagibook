@@ -11,29 +11,9 @@ import { Plus, X } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import * as m from "@/paraglide/messages";
 import type { FormValues } from "@/app/context/schemas";
-import {
-	Select,
-	SelectContent,
-	SelectItem,
-	SelectTrigger,
-	SelectValue,
-} from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
-
-// Component to display error messages
-const ErrorMessage: React.FC<{ id?: string; message?: string }> = ({
-	id,
-	message,
-}) => (
-	<p
-		id={id}
-		className={`${
-			message ? "h-6" : "h-0"
-		} transition-all duration-200 text-sm text-red-500`}
-	>
-		{message}
-	</p>
-);
+import { FieldErrorMessage } from "@/components/ErrorMessage";
+import { AgeGroupSelect } from "./AgeGroupSelect";
 
 // Main Characters component
 const Characters: React.FC = () => {
@@ -79,58 +59,13 @@ const Characters: React.FC = () => {
 								/>
 							</div>
 							{/* Error Message for Name */}
-							<ErrorMessage
+							<FieldErrorMessage
 								id={`characters.${index}.name-error`}
 								message={errors.characters?.[index]?.name?.message}
 							/>
 						</div>
 						<div className="flex-grow">
-							<Controller
-								control={control}
-								name={`characters.${index}.ageGroup` as const}
-								render={({ field }) => (
-									<div>
-										<Label htmlFor={`characters.${index}.ageGroup`}>
-											{m.characters_labels_ageGroup()}
-										</Label>
-										<Select
-											value={field.value}
-											onValueChange={(value) => {
-												field.onChange(value);
-											}}
-										>
-											<SelectTrigger id={`characters.${index}.ageGroup`}>
-												<SelectValue
-													placeholder={m.characters_placeholders_ageGroup()}
-												/>
-											</SelectTrigger>
-											<SelectContent>
-												<SelectItem value=" ">
-													{m.characters_placeholders_ageGroup()}
-												</SelectItem>
-												<SelectItem value="Baby 0-1">
-													{m.characters_ageGroup_baby()}
-												</SelectItem>
-												<SelectItem value="Toddler 1-3">
-													{m.characters_ageGroup_toddler()}
-												</SelectItem>
-												<SelectItem value="Kid 3-12">
-													{m.characters_ageGroup_kid()}
-												</SelectItem>
-												<SelectItem value="Teen 13-19">
-													{m.characters_ageGroup_teen()}
-												</SelectItem>
-												<SelectItem value="Adult 20-65">
-													{m.characters_ageGroup_adult()}
-												</SelectItem>
-												<SelectItem value="Elderly 65+">
-													{m.characters_ageGroup_elderly()}
-												</SelectItem>
-											</SelectContent>
-										</Select>
-									</div>
-								)}
-							/>
+							<AgeGroupSelect control={control} index={index} />
 						</div>
 						<Button
 							type="button"
@@ -194,7 +129,7 @@ const Characters: React.FC = () => {
 
 			{/* Array-level Error Message */}
 			{errors.characters?.message && (
-				<ErrorMessage message={errors.characters.message} />
+				<FieldErrorMessage message={errors.characters.message} />
 			)}
 
 			{/* Add Character Button */}

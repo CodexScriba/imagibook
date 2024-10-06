@@ -1,35 +1,27 @@
 /**
- * Defines the schema for individual characters in the application.
- * The `characterSchema` object defines the shape of a character, including:
- * - `name`: a string with a minimum length of 2 characters, with an error message if the name is required
- * - `isMainCharacter`: a boolean that defaults to `true`
- * - `ageGroup`: an optional enum representing the character's age group
- * - `description`: an optional string description of the character
+ * This file defines the Zod schemas for the character and step1 form data.
  *
- * The `step1Schema` object defines the schema for the first step of the application, which includes an array of characters with at least one character.
+ * The `characterSchema` defines the schema for a single character, including fields for name, whether it is the main character, age group, and an optional description.
  *
- * The `FormValues` type is an inferred type from the `step1Schema`, representing the shape of the form values for the first step.
+ * The `step1Schema` defines the schema for the first step of the form, which includes an array of characters that must have at least one element.
+ *
+ * The `FormValues` type is an inferred type from the `step1Schema`, representing the shape of the form data for the first step.
  */
 // schemas.ts
 
 import * as z from "zod";
 import * as m from "@/paraglide/messages";
+import { ageGroups } from "@/constants/ageGroups";
 
-// Define a schema for individual characters
+const ageGroupValues = ageGroups.map((ageGroup) => ageGroup.value) as [
+	string,
+	...string[],
+];
+
 export const characterSchema = z.object({
 	name: z.string().min(2, m.characters_errors_nameRequired()),
 	isMainCharacter: z.boolean().default(true),
-	ageGroup: z
-		.enum([
-			"",
-			"Baby 0-1",
-			"Toddler 1-3",
-			"Kid 3-12",
-			"Teen 13-19",
-			"Adult 20-65",
-			"Elderly 65+",
-		])
-		.optional(),
+	ageGroup: z.enum(ageGroupValues).optional(),
 	description: z.string().optional(),
 });
 
