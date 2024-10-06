@@ -2,6 +2,7 @@
 
 import * as m from "@/paraglide/messages";
 
+// This constant is used in components/AgeGroupSelect.tsx
 export const ageGroups = [
 	{ value: "", label: m.characters_placeholders_ageGroup() },
 	{ value: "Baby 0-1", label: m.characters_ageGroup_baby() },
@@ -11,3 +12,6 @@ export const ageGroups = [
 	{ value: "Adult 20-65", label: m.characters_ageGroup_adult() },
 	{ value: "Elderly 65+", label: m.characters_ageGroup_elderly() },
 ];
+
+// Note: This array is imported and used in components/AgeGroupSelect.tsx
+// to populate the options for the age group selection dropdown.
