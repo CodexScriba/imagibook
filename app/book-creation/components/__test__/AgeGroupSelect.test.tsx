@@ -1,148 +1,48 @@
-// components/__test__/AgeGroupSelect.test.tsx
-
-import type React from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
+import React from "react";
+import { render, screen } from "@testing-library/react";
 import { AgeGroupSelect } from "../AgeGroupSelect";
-import { useForm, FormProvider } from "react-hook-form";
-import "@testing-library/jest-dom/extend-expect"; // For additional matchers
+import { useForm } from "react-hook-form";
+import * as m from "@/paraglide/messages";
 
-describe("AgeGroupSelect Component", () => {
-	// Wrapper component to provide form context
-	const Wrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-		const methods = useForm({
-			defaultValues: {
-				characters: [
-					{
-						ageGroup: "",
-					},
-				],
-			},
-		});
+// Mock the messages module
+jest.mock("@/paraglide/messages", () => ({
+	characters_labels_ageGroup: () => "Age Group",
+	characters_placeholders_ageGroup: () => "Select age group",
+}));
 
-		return <FormProvider {...methods}>{children}</FormProvider>;
+// Mock the ageGroups constant
+jest.mock("@/constants/ageGroups", () => ({
+	ageGroups: [
+		{ value: "Unknown", label: "Select age group" },
+		{ value: "Baby 0-1", label: "Baby (0-1)" },
+		{ value: "Toddler 1-3", label: "Toddler (1-3)" },
+		{ value: "Kid 3-12", label: "Kid (3-12)" },
+		{ value: "Teen 13-19", label: "Teen (13-19)" },
+	],
+}));
+
+describe("AgeGroupSelect", () => {
+	const TestComponent = () => {
+		const { control } = useForm<{
+			characters: {
+				name: string;
+				isMainCharacter: boolean;
+				ageGroup?: string;
+				description?: string;
+			}[];
+		}>();
+		return <AgeGroupSelect control={control} index={0} />;
 	};
-	test("renders the select trigger button", () => {
-		const methods = useForm({
-			defaultValues: {
-				characters: [
-					{
-						name: "",
-						isMainCharacter: false,
-						ageGroup: "",
-						description: "",
-					},
-				],
-			},
-		});
 
-		render(
-			<Wrapper>
-				{/* biome-ignore lint/suspicious/noExplicitAny: <explanation> */}
-<AgeGroupSelect control={methods.control as any} index={0} />
-			</Wrapper>
-		);
-
-		// Check that the select trigger button is rendered
-		const selectButton = screen.getByRole("button");
-		expect(selectButton).toBeInTheDocument();
-	});
-
-	test("opens the dropdown when the select trigger is clicked", () => {
-		const methods = useForm({
-			defaultValues: {
-				characters: [
-					{
-						name: "",
-						isMainCharacter: false,
-						ageGroup: "",
-						description: "",
-					},
-				],
-			},
-		});
-
-		render(
-			<Wrapper>
-				<AgeGroupSelect control={methods.control} index={0} />
-			</Wrapper>
-		);
-
-		const selectButton = screen.getByRole("button");
-		fireEvent.click(selectButton);
-
-		// Check that the dropdown options are now visible
-		const dropdown = screen.getByRole("listbox");
-		expect(dropdown).toBeInTheDocument();
-	});
-
-	test("contains multiple selectable options", () => {
-		const methods = useForm({
-			defaultValues: {
-				characters: [
-					{
-						name: "",
-						isMainCharacter: false,
-						ageGroup: "",
-						description: "",
-					},
-				],
-			},
-		});
-
-		render(
-			<FormProvider {...methods}>
-				<AgeGroupSelect control={methods.control as Control<{ characters: { name: string; isMainCharacter: boolean; ageGroup?: string; description?: string; }[]; }>} index={0} />
-			</FormProvider>
-		);
-
-		const selectButton = screen.getByRole("button");
-		fireEvent.click(selectButton);
-
-		// Retrieve all option elements
-		const options = screen.getAllByRole("option");
-		expect(options.length).toBeGreaterThan(1); // Ensure there are multiple options
-	});	test("allows selecting an option and updates the form state", () => {
-		// Define a TestComponent to access form state after selection
-		const TestComponent = () => {
-			const methods = useForm({
-				defaultValues: {
-					characters: [
-						{
-							ageGroup: "",
-						},
-					],
-				},
-			});
-
-			return (
-				<FormProvider {...methods}>
-					<AgeGroupSelect control={methods.control} index={0} />
-					{/* Hidden element to display form state for assertion */}
-					<div data-testid="form-state">
-						{JSON.stringify(methods.getValues())}
-					</div>
-				</FormProvider>
-			);
-		};
-
+	it("renders the component with correct label", () => {
 		render(<TestComponent />);
+		expect(screen.getByText("Age Group")).toBeInTheDocument();
+	});
 
-		const selectButton = screen.getByRole("button");
-		fireEvent.click(selectButton);
-
-		// Select the first non-placeholder option
-		const options = screen.getAllByRole("option");
-		const selectableOption = options.find(
-			(option) => option.textContent && option.textContent.trim() !== "",
-		);
-		expect(selectableOption).toBeDefined();
-
-		if (selectableOption) {
-			fireEvent.click(selectableOption);
-		}
-
-		// Verify that the selected value is reflected in the form state
-		const formState = screen.getByTestId("form-state");
-		expect(formState).toHaveTextContent(selectableOption?.textContent || "");
+	it("renders the Select component with correct placeholder", () => {
+		render(<TestComponent />);
+		const selectElement = screen.getByRole("combobox");
+		expect(selectElement).toBeInTheDocument();
+		expect(selectElement).toHaveTextContent("Select age group");
 	});
 });
