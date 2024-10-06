@@ -4,7 +4,7 @@ import * as m from "@/paraglide/messages";
 
 // This constant is used in components/AgeGroupSelect.tsx
 export const ageGroups = [
-	{ value: "", label: m.characters_placeholders_ageGroup() },
+	{ value: "Unknown", label: m.characters_placeholders_ageGroup() },
 	{ value: "Baby 0-1", label: m.characters_ageGroup_baby() },
 	{ value: "Toddler 1-3", label: m.characters_ageGroup_toddler() },
 	{ value: "Kid 3-12", label: m.characters_ageGroup_kid() },
