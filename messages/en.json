@@ -81,5 +81,6 @@
 	"illustrationData_manga_description": "Dynamic and stylized illustrations with bold lines, expressive characters, and a dramatic sense of storytelling, inspired by classic manga art.",
 
 	"illustrationData_flatDesign_title": "Flat Design",
-	"illustrationData_flatDesign_description": "Modern and minimalist illustrations with bold colors and simple shapes, offering a clean and playful visual style."
-	}
+	"illustrationData_flatDesign_description": "Modern and minimalist illustrations with bold colors and simple shapes, offering a clean and playful visual style.",
+	"illustration_errors_required": "Please select an illustration style."
+}

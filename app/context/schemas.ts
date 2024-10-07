@@ -1,17 +1,11 @@
-/**
- * This file defines the Zod schemas for the character and step1 form data.
- *
- * The `characterSchema` defines the schema for a single character, including fields for name, whether it is the main character, age group, and an optional description.
- *
- * The `step1Schema` defines the schema for the first step of the form, which includes an array of characters that must have at least one element.
- *
- * The `FormValues` type is an inferred type from the `step1Schema`, representing the shape of the form data for the first step.
- */
 // schemas.ts
 
 import * as z from "zod";
 import * as m from "@/paraglide/messages";
 import { ageGroups } from "@/constants/ageGroups";
+import { illustrationData } from "@/constants/IllustrationData"; // Import illustrationData
+
+// Existing code...
 
 const ageGroupValues = ageGroups.map((ageGroup) => ageGroup.value) as [
 	string,
@@ -30,10 +24,28 @@ export const step1Schema = z.object({
 	characters: z.array(characterSchema).min(1, m.characters_errors_atLeastOne()),
 });
 
-// Step 2 schema (illustration style)
-export const step2Schema = z.object({
-	
-})
+// **Updated code starts here**
 
-// Define FormValues inferred from step1Schema
-export type FormValues = z.infer<typeof step1Schema>;
+// Extract illustration style values from illustrationData
+const illustrationStyleValues = illustrationData.map(
+	(style) => style.value,
+) as [string, ...string[]];
+
+// Step 2 schema (illustration style and character type)
+export const step2Schema = z.object({
+	illustrationStyle: z
+		.enum(illustrationStyleValues)
+		.refine(
+			(value) => illustrationStyleValues.includes(value),
+			m.illustration_errors_required(),
+		),
+	characterType: z.enum(["human", "animal"]),
+	animalType: z.string().optional(),
+	isAnthropomorphic: z.boolean().optional(),
+});
+
+// Combine step1Schema and step2Schema into a formSchema (if needed)
+export const formSchema = step1Schema.merge(step2Schema);
+
+// Update FormValues type
+export type FormValues = z.infer<typeof formSchema>;
