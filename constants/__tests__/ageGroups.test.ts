@@ -1,3 +1,8 @@
+/**
+ * Tests for the `ageGroups` constant, which is an array of objects representing different age groups.
+ * Each object in the array has a `value` and a `label` property.
+ * The tests ensure that the `ageGroups` constant is defined, is an array, contains valid age group objects, has unique values, and has non-empty labels.
+ */
 import { ageGroups } from '../ageGroups';
 
 //just testing cody's test generation. 
