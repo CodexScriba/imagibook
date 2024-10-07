@@ -5,7 +5,7 @@
 import type React from "react";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import Characters from "../components/Characters";
+import Characters from "../components/step1-characters/Characters";
 import { useFormData } from "@/app/context/FormContext";
 import CardWrapper from "@/app/components/CardWrapper";
 import * as m from "@/paraglide/messages";
