@@ -24,8 +24,6 @@ export const step1Schema = z.object({
 	characters: z.array(characterSchema).min(1, m.characters_errors_atLeastOne()),
 });
 
-// **Updated code starts here**
-
 // Extract illustration style values from illustrationData
 const illustrationStyleValues = illustrationData.map(
 	(style) => style.value,
