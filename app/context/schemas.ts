@@ -30,5 +30,10 @@ export const step1Schema = z.object({
 	characters: z.array(characterSchema).min(1, m.characters_errors_atLeastOne()),
 });
 
+// Step 2 schema (illustration style)
+export const step2Schema = z.object({
+	
+})
+
 // Define FormValues inferred from step1Schema
 export type FormValues = z.infer<typeof step1Schema>;

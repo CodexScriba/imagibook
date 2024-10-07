@@ -63,5 +63,23 @@
 	"step3_title": "Step 3: Story Overview",
 	"step3_description": "Provide a brief overview of your story to set the scene.",
 
-	"steps_next_button": "Next"
-}
+	"steps_next_button": "Next",
+
+	"illustrationData_disneyStyle_title": "Disney Style",
+	"illustrationData_disneyStyle_description": "Charming and whimsical illustrations inspired by Disney, bringing characters to life with expressive features and a magical atmosphere.",
+
+	"illustrationData_aquarelle_title": "Aquarelle",
+	"illustrationData_aquarelle_description": "Soft and fluid watercolor illustrations that create a dreamy and delicate visual experience for young readers.",
+
+	"illustrationData_storybookIllustration_title": "Storybook Illustration",
+	"illustrationData_storybookIllustration_description": "Classic and enchanting illustrations reminiscent of traditional children's books, evoking a sense of nostalgia and wonder.",
+
+	"illustrationData_pixarStyle_title": "Pixar Style",
+	"illustrationData_pixarStyle_description": "Richly detailed illustrations with vibrant colors, lifelike textures, and expressive characters, providing a captivating visual experience.",
+
+	"illustrationData_manga_title": "Manga",
+	"illustrationData_manga_description": "Dynamic and stylized illustrations with bold lines, expressive characters, and a dramatic sense of storytelling, inspired by classic manga art.",
+
+	"illustrationData_flatDesign_title": "Flat Design",
+	"illustrationData_flatDesign_description": "Modern and minimalist illustrations with bold colors and simple shapes, offering a clean and playful visual style."
+	}
