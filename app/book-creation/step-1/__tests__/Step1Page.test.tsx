@@ -1,34 +1,67 @@
-// __tests__/Step1Page.test.tsx
+import React from 'react';
+import { render, screen, fireEvent, act } from '@testing-library/react';
+import { useRouter } from 'next/navigation';
+import Step1Page from '../page';
+import { FormDataProvider } from '@/app/context/FormContext';
 
-import React from "react";
-import { render } from "@testing-library/react";
-import Step1Page from "@/app/book-creation/step-1/page";
-import { useFormData } from "@/app/context/FormContext";
-
-// Mock the Next.js useRouter hook
-jest.mock("next/navigation", () => ({
-	useRouter: () => ({
-		push: jest.fn(),
-		back: jest.fn(),
-	}),
+jest.mock('next/navigation', () => ({
+  useRouter: jest.fn(),
 }));
 
-// Mock the useFormData hook from FormContext
-jest.mock("@/app/context/FormContext", () => ({
-	useFormData: jest.fn(),
+jest.mock('@/app/context/FormContext', () => ({
+  FormDataProvider: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
+  useFormData: () => ({
+    formData: {},
+    setFormData: jest.fn(),
+  }),
 }));
 
-describe("Step1Page Component", () => {
-	beforeEach(() => {
-		// Provide default mock implementation for useFormData
-		(useFormData as jest.Mock).mockReturnValue({
-			formData: {},
-			setFormData: jest.fn(),
-		});
-	});
+describe('Step1Page', () => {
+  const mockPush = jest.fn();
 
-	it("renders without crashing", () => {
-		render(<Step1Page />);
-		// If render completes without throwing, the test passes
-	});
+  beforeEach(() => {
+    (useRouter as jest.Mock).mockReturnValue({
+      push: mockPush,
+    });
+  });
+
+  it('renders the Step1Page component', () => {
+    render(
+      <FormDataProvider>
+        <Step1Page />
+      </FormDataProvider>
+    );
+
+    expect(screen.getByText('Character Creation')).toBeInTheDocument();
+    expect(screen.getByText('Add Character')).toBeInTheDocument();
+  });
+
+  it('navigates to the previous page when back button is clicked', () => {
+    render(
+      <FormDataProvider>
+        <Step1Page />
+      </FormDataProvider>
+    );
+
+    const backButton = screen.getByText('Previous');
+    fireEvent.click(backButton);
+
+    expect(mockPush).toHaveBeenCalledWith('/book-creation');
+  });
+
+  it('submits the form and navigates to the next step', async () => {
+    render(
+      <FormDataProvider>
+        <Step1Page />
+      </FormDataProvider>
+    );
+
+    const nextButton = screen.getByText('Next');
+    
+    await act(async () => {
+      fireEvent.click(nextButton);
+    });
+
+    expect(mockPush).toHaveBeenCalledWith('/book-creation');
+  });
 });
