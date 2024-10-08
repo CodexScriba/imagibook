@@ -52,3 +52,14 @@ export const illustrationData: IllustrationStyle[] = [
 		image: "/placeholder.svg?height=200&width=300",
 	},
 ];
+
+export const animalSuggestions = [
+	"bear",
+	"monkey",
+	"frog",
+	"rabbit",
+	"cat",
+	"dog",
+	"lion",
+	"elephant",
+];
