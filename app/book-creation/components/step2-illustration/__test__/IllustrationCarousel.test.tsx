@@ -1,98 +1,72 @@
-// components/__tests__/IllustrationCarousel.test.tsx
+// app/book-creation/components/step2-illustration/__test__/IllustrationCarousel.test.tsx
 
-import type React from "react";
+import React from "react";
 import { render, screen } from "@testing-library/react";
-import { FormProvider, useForm } from "react-hook-form";
 import { IllustrationCarousel } from "../IllustrationCarousel";
+import { useForm, FormProvider } from "react-hook-form";
 
-// 1. Mock the Carousel and related components to prevent embla-carousel from executing
-jest.mock("@/components/ui/carousel", () => ({
-	Carousel: ({ children }: { children: React.ReactNode }) => (
-		<div data-testid="mocked-carousel">{children}</div>
-	),
-	CarouselContent: ({ children }: { children: React.ReactNode }) => (
-		<div data-testid="mocked-carousel-content">{children}</div>
-	),
-	CarouselItem: ({ children }: { children: React.ReactNode }) => (
-		<div data-testid="mocked-carousel-item">{children}</div>
-	),
-	CarouselNext: () => <button type="button" data-testid="mocked-carousel-next">Next</button>,
-	CarouselPrevious: () => (
-		<button type="button" data-testid="mocked-carousel-previous">Previous</button>
-	),
+// 1. Mock the Carousel components to avoid dependency on 'embla-carousel-react'
+jest.mock('@/components/ui/carousel', () => ({
+  Carousel: ({ children }: { children: React.ReactNode }) => <div data-testid="carousel">{children}</div>,
+  CarouselContent: ({ children }: { children: React.ReactNode }) => <div data-testid="carousel-content">{children}</div>,
+  CarouselItem: ({ children }: { children: React.ReactNode }) => <div data-testid="carousel-item">{children}</div>,
+  CarouselNext: () => <button data-testid="carousel-next">Next</button>,
+  CarouselPrevious: () => <button data-testid="carousel-prev">Previous</button>,
 }));
 
-// 2. Mock the Card and related components
-jest.mock("@/components/ui/card", () => ({
-	Card: ({ children }: { children: React.ReactNode }) => (
-		<div data-testid="mocked-card">{children}</div>
-	),
-	CardContent: ({ children }: { children: React.ReactNode }) => (
-		<div data-testid="mocked-card-content">{children}</div>
-	),
-}));
-
-// 3. Mock the Button component
-jest.mock("@/components/ui/button", () => ({
-	Button: ({
-		children,
-		onClick,
-		variant,
-	}: {
-		children: React.ReactNode;
-		onClick: () => void;
-		variant: string;
-	}) => (
-		<button
-			data-testid={`mocked-button-${variant}`}
-			onClick={onClick}
-			type="button"
-		>
-			{children}
-		</button>
-	),
-}));
-
-// 4. Mock react-hook-form's useFormContext
-jest.mock("react-hook-form", () => ({
-	...jest.requireActual("react-hook-form"),
-	useFormContext: () => ({
-		setValue: jest.fn(),
-		watch: jest.fn().mockReturnValue(""),
-	}),
+// 2. Mock the illustrationData to provide predictable data
+jest.mock("@/constants/IllustrationData", () => ({
+  illustrationData: [
+    {
+      value: "style1",
+      title: "Style 1",
+      description: "Description for Style 1",
+      image: "/path/to/image1.jpg",
+    },
+    {
+      value: "style2",
+      title: "Style 2",
+      description: "Description for Style 2",
+      image: "/path/to/image2.jpg",
+    },
+  ],
 }));
 
 describe("IllustrationCarousel", () => {
-	// Define a simple Wrapper to provide FormContext
-	const Wrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-		const methods = useForm({
-			defaultValues: {
-				illustrationStyle: "",
-			},
-		});
-		return <FormProvider {...methods}>{children}</FormProvider>;
-	};
+  test("renders without crashing and displays carousel items", () => {
+    // 3. Initialize react-hook-form and wrap the component with FormProvider
+    const Wrapper = () => {
+      const methods = useForm();
+      return (
+        <FormProvider {...methods}>
+          <IllustrationCarousel />
+        </FormProvider>
+      );
+    };
 
-	it("renders without crashing", () => {
-		render(
-			<Wrapper>
-				<IllustrationCarousel />
-			</Wrapper>,
-		);
+    // 4. Render the component
+    render(<Wrapper />);
 
-		// Check if the mocked carousel is in the document
-		expect(screen.getByTestId("mocked-carousel")).toBeInTheDocument();
-	});
+    // 5. Assertions to verify elements are rendered
 
-	it("displays at least one illustration item", () => {
-		render(
-			<Wrapper>
-				<IllustrationCarousel />
-			</Wrapper>,
-		);
+    // Check that the Carousel container is rendered
+    expect(screen.getByTestId("carousel")).toBeInTheDocument();
 
-		// Check if at least one carousel item is rendered
-		const carouselItems = screen.getAllByTestId("mocked-carousel-item");
-		expect(carouselItems.length).toBeGreaterThan(0);
-	});
+    // Check that the CarouselContent is rendered
+    expect(screen.getByTestId("carousel-content")).toBeInTheDocument();
+
+    // Check that two CarouselItems are rendered (as per mocked data)
+    const carouselItems = screen.getAllByTestId("carousel-item");
+    expect(carouselItems).toHaveLength(2);
+
+    // Check for specific text content from the mocked illustrationData
+    expect(screen.getByText("Style 1")).toBeInTheDocument();
+    expect(screen.getByText("Style 2")).toBeInTheDocument();
+    expect(screen.getByText("Description for Style 1")).toBeInTheDocument();
+    expect(screen.getByText("Description for Style 2")).toBeInTheDocument();
+
+    // Check that navigation buttons are rendered
+    expect(screen.getByTestId("carousel-next")).toBeInTheDocument();
+    expect(screen.getByTestId("carousel-prev")).toBeInTheDocument();
+  });
 });

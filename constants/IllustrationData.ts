@@ -14,6 +14,18 @@ export interface IllustrationStyle {
 	image: string;
 }
 
+export const animalSuggestions = [
+	"bear",
+	"monkey",
+	"frog",
+	"rabbit",
+	"cat",
+	"dog",
+	"lion",
+	"elephant",
+];
+
+
 export const illustrationData: IllustrationStyle[] = [
 	{
 		value: "Disney Style",
@@ -53,13 +65,3 @@ export const illustrationData: IllustrationStyle[] = [
 	},
 ];
 
-export const animalSuggestions = [
-	"bear",
-	"monkey",
-	"frog",
-	"rabbit",
-	"cat",
-	"dog",
-	"lion",
-	"elephant",
-];
