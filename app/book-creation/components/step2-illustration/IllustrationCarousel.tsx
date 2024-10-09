@@ -12,7 +12,8 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Button } from "@/components/ui/button";
-import { illustrationData } from "@/constants/IllustrationData";
+import { IllustrationData } from "@/constants/IllustrationData";
+
 
 export const IllustrationCarousel: React.FC = () => {
   const { setValue, watch } = useFormContext();
@@ -31,7 +32,7 @@ export const IllustrationCarousel: React.FC = () => {
       className="w-full max-w-sm mx-auto mb-6"
     >
       <CarouselContent>
-        {illustrationData.map((item) => (
+        {IllustrationData.map((item) => (
           <CarouselItem key={item.value}>
             <div className="p-1">
               <Card>

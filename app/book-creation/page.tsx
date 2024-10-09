@@ -1,15 +1,9 @@
-//app/book-creation/page.tsx
-import React from "react";
-import Navbar from "../components/Navbar/Navbar";
-import BookCreationForm from "./components/step1-characters/BookCreationForm";
-import Characters from "./components/step1-characters/Characters";
+import React from 'react'
 
-const bookCreation = () => {
-	return (
-		<div>
-			<Characters />
-		</div>
-	);
-};
+const page = () => {
+  return (
+	<div>page</div>
+  )
+}
 
-export default bookCreation;
+export default page
