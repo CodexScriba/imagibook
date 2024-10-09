@@ -15,18 +15,19 @@ export interface IllustrationStyle {
 }
 
 export const animalSuggestions = [
-	"bear",
-	"monkey",
-	"frog",
-	"rabbit",
-	"cat",
-	"dog",
-	"lion",
-	"elephant",
+	m.animalSuggestion_one(),
+	m.animalSuggestion_two(),
+	m.animalSuggestion_three(),
+	m.animalSuggestion_four(),
+	m.animalSuggestion_five(),
+	m.animalSuggestion_six(),
+	m.animalSuggestion_seven(),
+	m.animalSuggestion_eight(),
+	m.animalSuggestion_nine(),
+	m.animalSuggestion_ten(),
 ];
 
-
-export const illustrationData: IllustrationStyle[] = [
+export const IllustrationData: IllustrationStyle[] = [
 	{
 		value: "Disney Style",
 		title: m.illustrationData_disneyStyle_title(),
@@ -64,4 +65,3 @@ export const illustrationData: IllustrationStyle[] = [
 		image: "/placeholder.svg?height=200&width=300",
 	},
 ];
-

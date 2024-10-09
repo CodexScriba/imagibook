@@ -85,5 +85,29 @@
 
 	"illustration_errors_required": "Please select an illustration style.",
 	"illustration_legend": "Select your animation style",
-	"illustration_description": "The animation will reflect through all  images in the story"
+	"illustration_description": "The animation will reflect through all  images in the story",
+
+	"characterType_label": "Character Type",
+	"characterType_placeholder": "Select character type",
+	"characterType_human": "Human",
+	"characterType_animal": "Animal",
+	"characterType_noOptions": "No character types found.",
+
+	"animalType_label": "Animal Type",
+	"animalType_placeholder": "Select or type an animal",
+	"animalType_noOptions": "No animals found.",
+
+	"isAnthropomorphic_label": "Anthropomorphic",
+	"isAnthropomorphic_tooltip": "Animals with human-like characteristics",
+
+	"animalSuggestion_one": "Bear",
+	"animalSuggestion_two": "Monkey",
+	"animalSuggestion_three": "Frog",
+	"animalSuggestion_four": "Rabbit",
+	"animalSuggestion_five": "Cat",
+	"animalSuggestion_six": "Dog",
+	"animalSuggestion_seven": "Lion",
+	"animalSuggestion_eight": "Elephant",
+	"animalSuggestion_nine": "Owl",
+	"animalSuggestion_ten": "Tiger"
 }

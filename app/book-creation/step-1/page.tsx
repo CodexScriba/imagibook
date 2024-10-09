@@ -31,7 +31,7 @@ const Step1Page: React.FC = () => {
 		setFormData({ ...formData, ...data });
 
 		// Proceed to next step
-		router.push("/book-creation/step-1");
+		router.push("/book-creation/step-2");
 	};
 
 	const onBack = () => {
