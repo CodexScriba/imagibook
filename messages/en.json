@@ -82,5 +82,8 @@
 
 	"illustrationData_flatDesign_title": "Flat Design",
 	"illustrationData_flatDesign_description": "Modern and minimalist illustrations with bold colors and simple shapes, offering a clean and playful visual style.",
-	"illustration_errors_required": "Please select an illustration style."
+
+	"illustration_errors_required": "Please select an illustration style.",
+	"illustration_legend": "Select your animation style",
+	"illustration_description": "The animation will reflect through all  images in the story"
 }
