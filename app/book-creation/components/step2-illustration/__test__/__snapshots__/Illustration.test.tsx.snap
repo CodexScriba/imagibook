@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Illustration Component matches the snapshot 1`] = `
+<DocumentFragment>
+  <div>
+    <div
+      data-testid="illustration-carousel"
+    >
+      Mocked Carousel
+    </div>
+    <div
+      data-testid="illustration-character-type"
+    >
+      Mocked Character Type
+    </div>
+  </div>
+</DocumentFragment>
+`;
