@@ -98,7 +98,7 @@
 	"animalType_noOptions": "No animals found.",
 
 	"isAnthropomorphic_label": "Anthropomorphic",
-	"isAnthropomorphic_tooltip": "Animals with human-like characteristics",
+	"isAnthropomorphic_description": "Animals with human-like characteristics",
 
 	"animalSuggestion_one": "Bear",
 	"animalSuggestion_two": "Monkey",

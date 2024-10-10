@@ -14,60 +14,60 @@
 @layer base {
 	/* Set default color scheme variables using HSL color format */
 	:root {
-		--background: 220 60% 97%; /* Light blue-tinted for backgrounds */
-		--foreground: 0 0% 20%; /* Dark gray for primary text */
-		--card: 220 38% 98%; /* Soft off-white for cards and content areas */
-		--card-foreground: 0 0% 20%; /* Dark gray for card text */
-		--popover: 220 38% 98%; /* Soft off-white for popovers */
-		--popover-foreground: 0 0% 20%; /* Dark gray for popover text */
-		--primary: 258 100% 63%; /* Dreamy purple for primary actions and branding */
-		--primary-foreground: 0 0% 100%; /* White for primary action text */
-		--secondary: 210 80% 70%; /* Starry blue for secondary elements */
-		--secondary-foreground: 0 0% 100%; /* White for secondary action text */
-		--accent: 48 100% 67%; /* Sunny yellow for highlights and accents */
-		--accent-foreground: 0 0% 20%; /* Dark gray for accent text */
-		--muted: 0 0% 46%; /* Medium gray for secondary text */
-		--muted-foreground: 220 8% 52%; /* Dark grey for muted text in dark backgrounds */
-		--destructive: 0 100% 68%; /* Red for error states and critical actions */
-		--destructive-foreground: 0 0% 100%; /* White for destructive action text */
-		--border: 214 31.8% 91.4%; /* Light gray for borders */
-		--input: 214 31.8% 91.4%; /* Light gray for input backgrounds */
-		--ring: 258 100% 63%; /* Dreamy purple for focus rings */
-		--chart-1: 48 100% 67%; /* Chart color 1 */
-		--chart-2: 173 58% 39%; /* Chart color 2 */
-		--chart-3: 197 37% 24%; /* Chart color 3 */
-		--chart-4: 43 74% 66%; /* Chart color 4 */
-		--chart-5: 27 87% 67%; /* Chart color 5 */
+		--background: 220 60% 97%; /* Light blue-tinted for backgrounds #f2f6fc */
+		--foreground: 0 0% 20%; /* Dark gray for primary text #333333 */
+		--card: 220 38% 98%; /* Soft off-white for cards and content areas #f7fafd */
+		--card-foreground: 0 0% 20%; /* Dark gray for card text #6b7280 */
+		--popover: 220 38% 98%; /* Soft off-white for popovers #f7fafd */
+		--popover-foreground: 0 0% 20%; /* Dark gray for popover text #333333 */
+		--primary: 258 100% 63%; /* Dreamy purple for primary actions and branding #7c3aed */
+		--primary-foreground: 0 0% 100%; /* White for primary action text #ffffff */
+		--secondary: 210 80% 70%; /* Starry blue for secondary elements #6eb1f7 */
+		--secondary-foreground: 0 0% 100%; /* White for secondary action text #ffffff */
+		--accent: 48 100% 67%; /* Sunny yellow for highlights and accents #ffd700 */
+		--accent-foreground: 0 0% 20%; /* Dark gray for accent text #333333 */
+		--muted: 0 0% 46%; /* Medium gray for secondary text #757575 */
+		--muted-foreground: 220 8% 52%; /* Dark grey for muted text in dark backgrounds #7f8694 */
+		--destructive: 0 100% 68%; /* Red for error states and critical actions #ff3b3b */
+		--destructive-foreground: 0 0% 100%; /* White for destructive action text #ffffff */
+		--border: 214 31.8% 91.4%; /* Light gray for borders #e1e7ef */
+		--input: 214 31.8% 91.4%; /* Light gray for input backgrounds #e1e7ef */
+		--ring: 258 100% 63%; /* Dreamy purple for focus rings #7c3aed */
+		--chart-1: 48 100% 67%; /* Chart color 1 #ffd700 */
+		--chart-2: 173 58% 39%; /* Chart color 2 #2a9d8f */
+		--chart-3: 197 37% 24%; /* Chart color 3 #264653 */
+		--chart-4: 43 74% 66%; /* Chart color 4 #e9c46a */
+		--chart-5: 27 87% 67%; /* Chart color 5 #f4a261 */
 		--radius: 0.5rem; /* Default border radius */
 	}
 
 	/* Modify color scheme variables for dark mode */
 	.dark {
-		--background: 220 20% 10%; /* Darker background */
-		--foreground: 0 0% 90%; /* Lighter text */
-		--card: 220 20% 15%; /* Darker card background */
-		--card-foreground: 0 0% 90%; /* Lighter card text */
-		--popover: 220 20% 15%; /* Darker popover background */
-		--popover-foreground: 0 0% 90%; /* Lighter popover text */
-		--primary: 258 100% 63%; /* Dreamy purple for primary actions and branding */
-		--primary-foreground: 0 0% 100%; /* White for primary action text */
-		--secondary: 210 80% 70%; /* Starry blue for secondary elements */
-		--secondary-foreground: 0 0% 100%; /* White for secondary action text */
-		--accent: 48 100% 67%; /* Sunny yellow for highlights and accents */
-		--accent-foreground: 0 0% 20%; /* Dark gray for accent text */
-		--muted: 0 0% 46%; /* Medium gray for secondary text */
-		--muted-foreground: 0 0% 80%; /* White for muted text in dark backgrounds */
-		--destructive: 0 100% 68%; /* Red for error states and critical actions */
-		--destructive-foreground: 0 0% 100%; /* White for destructive action text */
-		--border: 214 31.8% 30%; /* Darker border */
-		--input: 214 31.8% 30%; /* Darker input background */
-		--ring: 258 100% 63%; /* Dreamy purple for focus rings */
+		--background: 220 20% 10%; /* Darker background #151a23 */
+		--foreground: 0 0% 90%; /* Lighter text #e6e6e6 */
+		--card: 220 20% 15%; /* Darker card background #1f2633 */
+		--card-foreground: 0 0% 90%; /* Lighter card text #e6e6e6 */
+		--popover: 220 20% 15%; /* Darker popover background #1f2633 */
+		--popover-foreground: 0 0% 90%; /* Lighter popover text #e6e6e6 */
+		--primary: 258 100% 63%; /* Dreamy purple for primary actions and branding #7c3aed */
+		--primary-foreground: 0 0% 100%; /* White for primary action text #ffffff */
+		--secondary: 210 80% 70%; /* Starry blue for secondary elements #6eb1f7 */
+		--secondary-foreground: 0 0% 100%; /* White for secondary action text #ffffff */
+		--accent: 48 100% 67%; /* Sunny yellow for highlights and accents #ffd700 */
+		--accent-foreground: 0 0% 20%; /* Dark gray for accent text #333333 */
+		--muted: 0 0% 46%; /* Medium gray for secondary text #757575 */
+		--muted-foreground: 0 0% 80%; /* White for muted text in dark backgrounds #cccccc */
+		--destructive: 0 100% 68%; /* Red for error states and critical actions #ff3b3b */
+		--destructive-foreground: 0 0% 100%; /* White for destructive action text #ffffff */
+		--border: 214 31.8% 30%; /* Darker border #3a4658 */
+		--input: 214 31.8% 30%; /* Darker input background #3a4658 */
+		--ring: 258 100% 63%; /* Dreamy purple for focus rings #7c3aed */
 		--radius: 0.5rem;
-		--chart-1: 48 100% 67%; /* Chart color 1 */
-		--chart-2: 173 58% 39%; /* Chart color 2 */
-		--chart-3: 197 37% 24%; /* Chart color 3 */
-		--chart-4: 43 74% 66%; /* Chart color 4 */
-		--chart-5: 27 87% 67%; /* Chart color 5 */
+		--chart-1: 48 100% 67%; /* Chart color 1 #ffd700 */
+		--chart-2: 173 58% 39%; /* Chart color 2 #2a9d8f */
+		--chart-3: 197 37% 24%; /* Chart color 3 #264653 */
+		--chart-4: 43 74% 66%; /* Chart color 4 #e9c46a */
+		--chart-5: 27 87% 67%; /* Chart color 5 #f4a261 */
 	}
 }
 
