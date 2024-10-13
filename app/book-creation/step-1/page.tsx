@@ -1,12 +1,14 @@
 // pages/step1.tsx
+"use client";
 
 import type React from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { step1Schema, type FormValues } from "@/app/context/schemas";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { FormDataProvider } from "@/app/context/FormContext";
 import Characters from "../components/step1-characters/Characters";
+import { Button } from "@/components/ui/button";
 
 const PageStep1: React.FC = () => {
 	const methods = useForm<FormValues>({
@@ -43,9 +45,7 @@ const PageStep1: React.FC = () => {
 					<Characters />
 					{/* Navigation Buttons */}
 					<div className="flex justify-end mt-4">
-						<button type="submit" className="btn btn-primary">
-							Next
-						</button>
+						<Button>Next</Button>
 					</div>
 				</form>
 			</FormProvider>
