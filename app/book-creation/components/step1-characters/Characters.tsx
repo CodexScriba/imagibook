@@ -1,4 +1,4 @@
-// components/Characters.tsx
+// app/book-creation/components/step1-characters/Characters.tsx
 
 import type React from "react";
 import { useState } from "react";
@@ -9,7 +9,7 @@ import CharacterForm from "./CharacterForm";
 import type { FormValues } from "@/app/context/schemas";
 
 const Characters: React.FC = () => {
-	const { control } = useFormContext<FormValues>();
+	const { control, trigger } = useFormContext<FormValues>();
 
 	const { fields, append, remove } = useFieldArray({
 		control,
@@ -18,16 +18,31 @@ const Characters: React.FC = () => {
 
 	const [activeTab, setActiveTab] = useState<number>(0);
 
-	const addCharacter = () => {
+	/**
+	 * Adds a new character to the form.
+	 * Validates the current character's name before adding a new one.
+	 */
+	const addCharacter = async () => {
+		const isValid = await trigger(`characters.${activeTab}.name`);
+		if (!isValid) {
+			return;
+		}
 		append({
 			name: "",
 			isMainCharacter: fields.length === 0,
 			ageGroup: "",
+			characterType: "animal",
+			animalType: "",
+			isAnthropomorphic: false,
 			description: "",
 		});
-		setActiveTab(fields.length); // Set active tab to the new character
+		setActiveTab(fields.length);
 	};
 
+	/**
+	 * Removes a character at the specified index.
+	 * Adjusts the active tab accordingly.
+	 */
 	const handleRemove = (index: number) => {
 		if (fields.length > 1) {
 			remove(index);
@@ -37,6 +52,7 @@ const Characters: React.FC = () => {
 
 	return (
 		<div className="space-y-6">
+			{/* Character Tabs */}
 			<CharacterTab
 				fields={fields}
 				activeTab={activeTab}

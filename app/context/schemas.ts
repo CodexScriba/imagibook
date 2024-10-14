@@ -1,30 +1,39 @@
-// schemas.ts
+// app/context/schemas.ts
 
 import * as z from "zod";
 import * as m from "@/paraglide/messages";
 import { ageGroups } from "@/constants/ageGroups";
 
+// Extract age group values for the enum
 const ageGroupValues = ageGroups.map((ageGroup) => ageGroup.value) as [
-  string,
-  ...string[]
+	string,
+	...string[],
 ];
 
+/**
+ * Schema for an individual character.
+ * Now includes 'characterType', 'animalType', and 'isAnthropomorphic' per character.
+ */
 export const characterSchema = z.object({
-  name: z.string().min(2, m.characters_errors_nameRequired()),
-  isMainCharacter: z.boolean().default(true),
-  ageGroup: z.enum(ageGroupValues).optional(),
-  description: z.string().optional(),
+	name: z.string().min(2, m.characters_errors_nameRequired()),
+	isMainCharacter: z.boolean().default(true),
+	ageGroup: z.enum(ageGroupValues).optional(),
+	characterType: z.enum(["human", "animal"]).default("animal"),
+	animalType: z.string().optional(),
+	isAnthropomorphic: z.boolean().optional(),
+	description: z.string().optional(),
 });
 
-// Step 1 schema (characters and character type)
+/**
+ * Schema for Step 1 of the form.
+ * Removed global 'characterType', 'animalType', and 'isAnthropomorphic' fields.
+ */
 export const step1Schema = z.object({
-  characters: z.array(characterSchema).min(1, m.characters_errors_atLeastOne()),
-  characterType: z.enum(["human", "animal"]).default("animal"),
-  animalType: z.string().optional(),
-  isAnthropomorphic: z.boolean().optional(),
+	characters: z.array(characterSchema).min(1, m.characters_errors_atLeastOne()),
 });
 
 // Define the overall form schema
-export const formSchema = step1Schema; // If you have more steps, you can merge schemas accordingly
+export const formSchema = step1Schema;
 
+// Type inferred from the form schema
 export type FormValues = z.infer<typeof formSchema>;
