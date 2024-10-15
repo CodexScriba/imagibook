@@ -1,7 +1,4 @@
-// app/book-creation/step-1/page.tsx
-
 "use client";
-
 import type React from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -12,9 +9,9 @@ import Characters from "../components/step1-characters/Characters";
 import { Button } from "@/components/ui/button";
 import CardWrapper from "@/app/components/CardWrapper";
 import * as m from "@/paraglide/messages";
+import { Users } from "lucide-react";
 
 const PageStep1: React.FC = () => {
-	// Initialize the form with react-hook-form and zodResolver for validation
 	const methods = useForm<FormValues>({
 		resolver: zodResolver(step1Schema),
 		defaultValues: {
@@ -34,27 +31,35 @@ const PageStep1: React.FC = () => {
 
 	const router = useRouter();
 
-	/**
-	 * Handles form submission.
-	 * Logs the data and navigates to the next step.
-	 * @param data - The form data
-	 */
 	const onSubmit = (data: FormValues) => {
 		console.log("Step 1 Data:", data);
-		router.push("/step2");
+		router.push("/book-creation/step-2");
 	};
 
 	return (
 		<FormDataProvider>
 			<FormProvider {...methods}>
-				<div className="min-h-screen flex flex-col items-center justify-start px-4">
-					<CardWrapper title={m.characters_legend()} description={""}>
-						<form onSubmit={methods.handleSubmit(onSubmit)}>
+				<div className="min-h-screen flex flex-col items-center justify-center px-4">
+					<CardWrapper
+						title={
+							<div className="flex items-center justify-center">
+								<Users className="mr-2" />
+								{m.characters_legend()}
+							</div>
+						}
+						description={m.characters_description()}
+					>
+						<form
+							onSubmit={methods.handleSubmit(onSubmit)}
+							className="flex flex-col items-center"
+						>
 							{/* Characters Component */}
 							<Characters />
 							{/* Navigation Buttons */}
-							<div className="flex justify-end mt-4">
-								<Button type="submit">{m.buttons_next()}</Button>
+							<div className="mt-4 w-full flex justify-end pb-4">
+								<Button type="submit" className="text-base px-6 py-3">
+									{m.buttons_next()}
+								</Button>
 							</div>
 						</form>
 					</CardWrapper>

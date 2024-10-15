@@ -35,6 +35,7 @@ import {
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 import { animalSuggestions } from "@/constants/IllustrationData";
+import { Separator } from "@/components/ui/separator";
 
 interface CharacterFormProps {
 	index: number;
@@ -79,7 +80,8 @@ const CharacterForm: React.FC<CharacterFormProps> = ({
       Container for the character form.
       'relative' class is added to position the delete button.
     */
-		<div className="space-y-6 p-6 border rounded-lg shadow-sm bg-white relative">
+		<div className="space-y-6 p-6 relative">
+			<Separator />
 			{/* 
         Remove Button positioned at the top right corner.
         Disabled if there's only one character left.

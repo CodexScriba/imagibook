@@ -51,7 +51,7 @@ const Characters: React.FC = () => {
 	};
 
 	return (
-		<div className="space-y-6">
+		<div className="space-y-2">
 			{/* Character Tabs */}
 			<CharacterTab
 				fields={fields}
