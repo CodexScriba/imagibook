@@ -51,7 +51,7 @@ const PageStep1: React.FC = () => {
 					>
 						<form
 							onSubmit={methods.handleSubmit(onSubmit)}
-							className="flex flex-col items-center"
+							className="flex flex-col items-center w-full"
 						>
 							{/* Characters Component */}
 							<Characters />

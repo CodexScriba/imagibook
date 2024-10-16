@@ -80,7 +80,7 @@ const CharacterForm: React.FC<CharacterFormProps> = ({
       Container for the character form.
       'relative' class is added to position the delete button.
     */
-		<div className="space-y-4 p-4 relative">
+		<div className="space-y-4 p-4 relative max-w-full mr-4 ml-4">
 			<Separator />
 			{/* 
         Remove Button positioned at the top right corner.
@@ -289,7 +289,7 @@ const CharacterForm: React.FC<CharacterFormProps> = ({
 						</div>
 
 						{/* Anthropomorphic Switch */}
-						<div className="flex items-center space-x-2">
+						<div className="flex items-center space-x-2 mt-4">
 							<Switch
 								id={`characters.${index}.isAnthropomorphic`}
 								checked={isAnthropomorphic}

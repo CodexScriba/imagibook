@@ -60,8 +60,7 @@ const CharacterTab: React.FC<CharacterTabProps> = ({
 	}, []);
 
 	return (
-		<div className="relative">
-			{/* Left Arrow */}
+		<div className="relative w-full overflow-hidden">
 			{showLeftArrow && (
 				<Button
 					variant="ghost"
@@ -75,14 +74,14 @@ const CharacterTab: React.FC<CharacterTabProps> = ({
 			)}
 
 			<div
-				className="flex overflow-x-auto space-x-2 pb-2 scrollbar-hide px-8"
+				className="flex overflow-x-auto space-x-2 pb-2 scrollbar-hide w-full"
 				ref={scrollContainerRef}
 			>
 				{/* Add Character Button */}
 				<Button
 					variant="ghost"
 					onClick={addCharacter}
-					className="whitespace-nowrap flex-shrink-0 flex items-center"
+					className="whitespace-nowrap flex items-center shrink-0"
 				>
 					<Plus className="w-4 h-4 mr-1" />
 					{m.characters_buttons_add()}
@@ -94,7 +93,7 @@ const CharacterTab: React.FC<CharacterTabProps> = ({
 						variant={activeTab === index ? "default" : "outline"}
 						onClick={() => setActiveTab(index)}
 						className={clsx(
-							"whitespace-nowrap flex-shrink-0",
+							"whitespace-nowrap shrink-0",
 							activeTab === index
 								? "bg-indigo-500 text-white"
 								: "text-gray-700",
@@ -105,7 +104,6 @@ const CharacterTab: React.FC<CharacterTabProps> = ({
 				))}
 			</div>
 
-			{/* Right Arrow */}
 			{showRightArrow && (
 				<Button
 					variant="ghost"

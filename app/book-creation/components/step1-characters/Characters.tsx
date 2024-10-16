@@ -51,7 +51,7 @@ const Characters: React.FC = () => {
 	};
 
 	return (
-		<div className="space-y-1">
+		<div className="w-full space-y-4 overflow-hidden">
 			{/* Character Tabs */}
 			<CharacterTab
 				fields={fields}
@@ -61,16 +61,18 @@ const Characters: React.FC = () => {
 			/>
 
 			{/* Active Character Form */}
-			{fields.map((field, index) =>
-				index === activeTab ? (
-					<CharacterForm
-						key={field.id}
-						index={index}
-						handleRemove={handleRemove}
-						totalFields={fields.length}
-					/>
-				) : null,
-			)}
+			<div className="w-full overflow-x-auto">
+				{fields.map((field, index) =>
+					index === activeTab ? (
+						<CharacterForm
+							key={field.id}
+							index={index}
+							handleRemove={handleRemove}
+							totalFields={fields.length}
+						/>
+					) : null,
+				)}
+			</div>
 		</div>
 	);
 };
