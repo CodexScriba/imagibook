@@ -39,10 +39,10 @@ const PageStep1: React.FC = () => {
 	return (
 		<FormDataProvider>
 			<FormProvider {...methods}>
-				<div className="min-h-screen flex flex-col items-center justify-center px-4">
+				<div className="flex flex-col items-center justify-center min-h-full mt-2">
 					<CardWrapper
 						title={
-							<div className="flex items-center justify-center">
+							<div className="flex items-center justify-center mt-4">
 								<Users className="mr-2" />
 								{m.characters_legend()}
 							</div>

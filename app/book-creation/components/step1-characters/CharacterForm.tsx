@@ -80,7 +80,7 @@ const CharacterForm: React.FC<CharacterFormProps> = ({
       Container for the character form.
       'relative' class is added to position the delete button.
     */
-		<div className="space-y-6 p-6 relative">
+		<div className="space-y-4 p-4 relative">
 			<Separator />
 			{/* 
         Remove Button positioned at the top right corner.
@@ -223,91 +223,93 @@ const CharacterForm: React.FC<CharacterFormProps> = ({
 			</div>
 
 			{/* Animal Type Selection (Visible only if characterType is 'animal') */}
-			{characterType === "animal" && (
-				<>
-					<div>
-						<Label
-							htmlFor={`characters.${index}.animalType`}
-							className="text-foreground"
-						>
-							{m.animalType_label()}
-						</Label>
-						<Popover open={openAnimalType} onOpenChange={setOpenAnimalType}>
-							<PopoverTrigger asChild>
-								<Button
-									variant="outline"
-									aria-expanded={openAnimalType}
-									className="w-full justify-between"
-								>
-									{animalTypeInput || m.animalType_placeholder()}
-									<ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-								</Button>
-							</PopoverTrigger>
-							<PopoverContent className="w-full p-0">
-								<Command>
-									<CommandInput
-										placeholder={m.animalType_placeholder()}
-										value={animalTypeInput}
-										onValueChange={(value: string) => {
-											setAnimalTypeInput(value);
-											setValue(`characters.${index}.animalType`, value);
-										}}
-									/>
-									<CommandList>
-										<CommandEmpty>{m.animalType_noOptions()}</CommandEmpty>
-										<CommandGroup>
-											{animalSuggestions.map((animal) => (
-												<CommandItem
-													key={animal}
-													value={animal}
-													onSelect={(currentValue: string) => {
-														setAnimalTypeInput(currentValue);
-														setValue(
-															`characters.${index}.animalType`,
-															currentValue,
-														);
-														setOpenAnimalType(false);
-													}}
-												>
-													<Check
-														className={cn(
-															"mr-2 h-4 w-4",
-															animalTypeInput === animal
-																? "opacity-100"
-																: "opacity-0",
-														)}
-													/>
-													{animal}
-												</CommandItem>
-											))}
-										</CommandGroup>
-									</CommandList>
-								</Command>
-							</PopoverContent>
-						</Popover>
-					</div>
+			<div className="w-full">
+				{characterType === "animal" && (
+					<>
+						<div>
+							<Label
+								htmlFor={`characters.${index}.animalType`}
+								className="text-foreground"
+							>
+								{m.animalType_label()}
+							</Label>
+							<Popover open={openAnimalType} onOpenChange={setOpenAnimalType}>
+								<PopoverTrigger asChild>
+									<Button
+										variant="outline"
+										aria-expanded={openAnimalType}
+										className="w-full justify-between"
+									>
+										{animalTypeInput || m.animalType_placeholder()}
+										<ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+									</Button>
+								</PopoverTrigger>
+								<PopoverContent className="w-full p-0">
+									<Command>
+										<CommandInput
+											placeholder={m.animalType_placeholder()}
+											value={animalTypeInput}
+											onValueChange={(value: string) => {
+												setAnimalTypeInput(value);
+												setValue(`characters.${index}.animalType`, value);
+											}}
+										/>
+										<CommandList>
+											<CommandEmpty>{m.animalType_noOptions()}</CommandEmpty>
+											<CommandGroup>
+												{animalSuggestions.map((animal) => (
+													<CommandItem
+														key={animal}
+														value={animal}
+														onSelect={(currentValue: string) => {
+															setAnimalTypeInput(currentValue);
+															setValue(
+																`characters.${index}.animalType`,
+																currentValue,
+															);
+															setOpenAnimalType(false);
+														}}
+													>
+														<Check
+															className={cn(
+																"mr-2 h-4 w-4",
+																animalTypeInput === animal
+																	? "opacity-100"
+																	: "opacity-0",
+															)}
+														/>
+														{animal}
+													</CommandItem>
+												))}
+											</CommandGroup>
+										</CommandList>
+									</Command>
+								</PopoverContent>
+							</Popover>
+						</div>
 
-					{/* Anthropomorphic Switch */}
-					<div className="flex items-center space-x-2">
-						<Switch
-							id={`characters.${index}.isAnthropomorphic`}
-							checked={isAnthropomorphic}
-							onCheckedChange={(checked) =>
-								setValue(`characters.${index}.isAnthropomorphic`, checked)
-							}
-						/>
-						<Label
-							htmlFor={`characters.${index}.isAnthropomorphic`}
-							className="flex items-center space-x-1 text-foreground"
-						>
-							<span>{m.isAnthropomorphic_label()}</span>
-							<span className="text-sm text-gray-500">
-								{m.isAnthropomorphic_description()}
-							</span>
-						</Label>
-					</div>
-				</>
-			)}
+						{/* Anthropomorphic Switch */}
+						<div className="flex items-center space-x-2">
+							<Switch
+								id={`characters.${index}.isAnthropomorphic`}
+								checked={isAnthropomorphic}
+								onCheckedChange={(checked) =>
+									setValue(`characters.${index}.isAnthropomorphic`, checked)
+								}
+							/>
+							<Label
+								htmlFor={`characters.${index}.isAnthropomorphic`}
+								className="flex items-center space-x-1 text-foreground"
+							>
+								<span>{m.isAnthropomorphic_label()}</span>
+								<span className="text-sm text-gray-500">
+									{m.isAnthropomorphic_description()}
+								</span>
+							</Label>
+						</div>
+					</>
+				)}
+			</div>
 
 			{/* Description Field */}
 			<div>

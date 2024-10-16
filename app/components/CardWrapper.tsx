@@ -37,7 +37,7 @@ const CardWrapper: React.FC<CardWrapperProps> = ({
         Ensures consistent padding and layout
       */}
 			<CardContent className="flex-grow flex flex-col justify-between p-2">
-				<div className="w-4/5 mx-auto space-y-2">{children}</div>
+				<div className="w-full max-w-md mx-auto space-y-2">{children}</div>
 			</CardContent>
 		</Card>
 	);
