@@ -14,7 +14,7 @@ jest.mock('@/paraglide/messages', () => ({
 // Mock the CharacterTab component
 jest.mock('../CharacterTab', () => ({
   __esModule: true,
-  default: ({ addCharacter }: any) => (
+  default: ({ addCharacter }: { addCharacter: () => void }) => (
     <div>
       <button onClick={addCharacter}>Add Character</button>
       <div data-testid="character-tab">Character Tab</div>
@@ -25,7 +25,7 @@ jest.mock('../CharacterTab', () => ({
 // Mock the CharacterForm component
 jest.mock('../CharacterForm', () => ({
   __esModule: true,
-  default: ({ index }: any) => <div data-testid={`character-form-${index}`}>Character Form {index}</div>,
+  default: ({ index }: { index: number }) => <div data-testid={`character-form-${index}`}>Character Form {index}</div>,
 }));
 
 // Mock react-hook-form's useFieldArray
@@ -45,7 +45,7 @@ jest.mock('react-hook-form', () => {
 });
 
 // Define a wrapper to provide the necessary context
-const Wrapper: React.FC<{ defaultValues?: FormValues }> = ({ children, defaultValues }) => {
+const Wrapper: React.FC<{ children: React.ReactNode; defaultValues?: Partial<FormValues> }> = ({ children, defaultValues }) => {
   const methods = useForm<FormValues>({
     defaultValues: defaultValues || {
       characters: [
