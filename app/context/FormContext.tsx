@@ -1,12 +1,13 @@
 import type React from "react";
 import { createContext, useContext, useState } from "react";
-import type { FormValues } from "@/app/context/schemas";
+import type { FormValues } from "@/app/context/schemas"; // Ensure you're importing the updated FormValues
 
 type FormContextType = {
 	formData: FormValues;
 	setFormData: React.Dispatch<React.SetStateAction<FormValues>>;
 };
 
+// Create the context
 export const FormContext = createContext<FormContextType | null>(null);
 
 interface FormDataProviderProps {
@@ -14,6 +15,7 @@ interface FormDataProviderProps {
 	initialData?: FormValues;
 }
 
+// FormDataProvider to supply form data throughout the application
 export const FormDataProvider: React.FC<FormDataProviderProps> = ({
 	children,
 	initialData,
@@ -31,7 +33,8 @@ export const FormDataProvider: React.FC<FormDataProviderProps> = ({
 					description: "",
 				},
 			],
-			illustrationStyle: "", // Added default value
+			illustrationStyle: "",
+			storyOverview: "", // Add storyOverview with a default value
 		},
 	);
 
@@ -42,6 +45,7 @@ export const FormDataProvider: React.FC<FormDataProviderProps> = ({
 	);
 };
 
+// Custom hook to access the form data
 export const useFormData = () => {
 	const context = useContext(FormContext);
 	if (!context) {

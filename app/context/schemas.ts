@@ -36,9 +36,20 @@ export const step2Schema = z.object({
 });
 
 /**
- * Overall form schema combining step1 and step2 schemas.
+ * Schema for Step 3 of the form.
+ * Includes story overview input.
  */
-export const formSchema = step1Schema.merge(step2Schema);
+export const step3Schema = z.object({
+  storyOverview: z
+    .string()
+    .max(100, m.storyOverview_errors_maxLength())
+    .min(1, m.storyOverview_errors_required()),
+});
+
+/**
+ * Overall form schema combining step1, step2, and step3 schemas.
+ */
+export const formSchema = step1Schema.merge(step2Schema).merge(step3Schema);
 
 // Type inferred from the form schema
 export type FormValues = z.infer<typeof formSchema>;
