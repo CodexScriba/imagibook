@@ -13,7 +13,7 @@ const Characters: React.FC = () => {
 
 	const { fields, append, remove } = useFieldArray({
 		control,
-		name: "characters",
+		name: "caracters",
 	});
 
 	const [activeTab, setActiveTab] = useState<number>(0);

@@ -15,12 +15,12 @@ export const characterSchema = z.object({
   name: z.string().min(2, m.characters_errors_nameRequired()),
   isMainCharacter: z.boolean().default(true),
   ageGroup: z.enum(ageGroupValues).optional(),
-  characterType: z.enum(["human", "animal"]).default("animal"),
+  characterType: z.enum(["human", "animal", "dinosaur"]).default("animal"),
   animalType: z.string().optional(),
+  dinosaurType: z.string().optional(),
   isAnthropomorphic: z.boolean().optional(),
   description: z.string().optional(),
 });
-
 /**
  * Schema for Step 1 of the form.
  */

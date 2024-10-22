@@ -31,10 +31,11 @@ export const FormDataProvider: React.FC<FormDataProviderProps> = ({
 					animalType: "",
 					isAnthropomorphic: true,
 					description: "",
+					dinosaurType: "",
 				},
 			],
 			illustrationStyle: "",
-			storyOverview: "", // Add storyOverview with a default value
+			storyOverview: "",
 		},
 	);
 

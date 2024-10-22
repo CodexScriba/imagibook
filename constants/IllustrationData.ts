@@ -27,6 +27,17 @@ export const animalSuggestions = [
 	m.animalSuggestion_ten(),
 ];
 
+export const dinosaurSuggestions = [
+	m.dinosaurSuggestion_one(),
+	m.dinosaurSuggestion_two(),
+	m.dinosaurSuggestion_three(),
+	m.dinosaurSuggestion_four(),
+	m.dinosaurSuggestion_five(),
+	m.dinosaurSuggestion_six(),
+	m.dinosaurSuggestion_seven(),
+	m.dinosaurSuggestion_eight()
+  ];
+
 export const IllustrationData: IllustrationStyle[] = [
 	{
 		value: "Disney Style",
@@ -65,3 +76,5 @@ export const IllustrationData: IllustrationStyle[] = [
 		image: "/placeholder.svg?height=200&width=300",
 	},
 ];
+
+

@@ -109,5 +109,17 @@
 	"animalSuggestion_seven": "Lion",
 	"animalSuggestion_eight": "Elephant",
 	"animalSuggestion_nine": "Owl",
-	"animalSuggestion_ten": "Tiger"
+	"animalSuggestion_ten": "Tiger",
+	"characterType_dinosaur": "Dinosaur",
+	"dinosaurType_label": "Dinosaur Type",
+	"dinosaurType_placeholder": "Select or type a dinosaur",
+	"dinosaurType_noOptions": "No dinosaurs found",
+	"dinosaurSuggestion_one": "Brachiosaurus",
+	"dinosaurSuggestion_two": "Tyrannosaurus Rex",
+	"dinosaurSuggestion_three": "Velociraptor",
+	"dinosaurSuggestion_four": "Stegosaurus",
+	"dinosaurSuggestion_five": "Triceratops",
+	"dinosaurSuggestion_six": "Pterodactyl",
+	"dinosaurSuggestion_seven": "Diplodocus",
+	"dinosaurSuggestion_eight": "Ankylosaurus"
 }
