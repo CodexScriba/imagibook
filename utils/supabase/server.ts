@@ -1,11 +1,9 @@
-// utils/supabase/server.ts
 import { createServerClient, type CookieOptions } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 
 // Creates a Supabase client for Server Components, Server Actions, and Route Handlers
-// Must create a new instance for each request to get the latest cookie data
-export async function createClient() {
-  const cookieStore = await cookies()
+export function createClient() {
+  const cookieStore = cookies()
 
   return createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
