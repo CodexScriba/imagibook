@@ -5,78 +5,73 @@
 
 /* Define a custom utility class for balanced text wrapping */
 @layer utilities {
-	.text-balance {
-		text-wrap: balance;
-	}
+  .text-balance {
+    text-wrap: balance;
+  }
 }
 
 /* Define base styles within the 'base' layer */
 @layer base {
-	/* Set default color scheme variables using HSL color format */
-	:root {
-		--background: 220 60% 97%; /* Light blue-tinted for backgrounds #f2f6fc */
-		--foreground: 0 0% 20%; /* Dark gray for primary text #333333 */
-		--card: 220 38% 98%; /* Soft off-white for cards and content areas #f7fafd */
-		--card-foreground: 0 0% 20%; /* Dark gray for card text #6b7280 */
-		--popover: 220 38% 98%; /* Soft off-white for popovers #f7fafd */
-		--popover-foreground: 0 0% 20%; /* Dark gray for popover text #333333 */
-		--primary: 258 100% 63%; /* Dreamy purple for primary actions and branding #7c3aed */
-		--primary-foreground: 0 0% 100%; /* White for primary action text #ffffff */
-		--secondary: 210 80% 70%; /* Starry blue for secondary elements #6eb1f7 */
-		--secondary-foreground: 0 0% 100%; /* White for secondary action text #ffffff */
-		--accent: 48 100% 67%; /* Sunny yellow for highlights and accents #ffd700 */
-		--accent-foreground: 0 0% 20%; /* Dark gray for accent text #333333 */
-		--muted: 0 0% 46%; /* Medium gray for secondary text #757575 */
-		--muted-foreground: 220 8% 52%; /* Dark grey for muted text in dark backgrounds #7f8694 */
-		--destructive: 0 100% 68%; /* Red for error states and critical actions #ff3b3b */
-		--destructive-foreground: 0 0% 100%; /* White for destructive action text #ffffff */
-		--border: 214 31.8% 91.4%; /* Light gray for borders #e1e7ef */
-		--input: 214 31.8% 91.4%; /* Light gray for input backgrounds #e1e7ef */
-		--ring: 258 100% 63%; /* Dreamy purple for focus rings #7c3aed */
-		--chart-1: 48 100% 67%; /* Chart color 1 #ffd700 */
-		--chart-2: 173 58% 39%; /* Chart color 2 #2a9d8f */
-		--chart-3: 197 37% 24%; /* Chart color 3 #264653 */
-		--chart-4: 43 74% 66%; /* Chart color 4 #e9c46a */
-		--chart-5: 27 87% 67%; /* Chart color 5 #f4a261 */
-		--radius: 0.5rem; /* Default border radius */
-	}
+  :root {
+    --background: 220 60% 97%;
+    --foreground: 0 0% 20%;
+    --card: 220 38% 98%;
+    --card-foreground: 0 0% 20%;
+    --popover: 220 38% 98%;
+    --popover-foreground: 0 0% 20%;
+    --primary: 258 100% 63%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 80% 70%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 48 100% 67%;
+    --accent-foreground: 0 0% 20%;
+    --muted: 0 0% 46%;
+    --muted-foreground: 220 8% 52%;
+    --destructive: 0 100% 68%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 214 31.8% 91.4%;
+    --input: 214 31.8% 91.4%;
+    --ring: 258 100% 63%;
+    --chart-1: 48 100% 67%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+  }
 
-	/* Modify color scheme variables for dark mode */
-	.dark {
-		--background: 220 20% 10%; /* Darker background #151a23 */
-		--foreground: 0 0% 90%; /* Lighter text #e6e6e6 */
-		--card: 220 20% 15%; /* Darker card background #1f2633 */
-		--card-foreground: 0 0% 90%; /* Lighter card text #e6e6e6 */
-		--popover: 220 20% 15%; /* Darker popover background #1f2633 */
-		--popover-foreground: 0 0% 90%; /* Lighter popover text #e6e6e6 */
-		--primary: 258 100% 63%; /* Dreamy purple for primary actions and branding #7c3aed */
-		--primary-foreground: 0 0% 100%; /* White for primary action text #ffffff */
-		--secondary: 210 80% 70%; /* Starry blue for secondary elements #6eb1f7 */
-		--secondary-foreground: 0 0% 100%; /* White for secondary action text #ffffff */
-		--accent: 48 100% 67%; /* Sunny yellow for highlights and accents #ffd700 */
-		--accent-foreground: 0 0% 20%; /* Dark gray for accent text #333333 */
-		--muted: 0 0% 46%; /* Medium gray for secondary text #757575 */
-		--muted-foreground: 0 0% 80%; /* White for muted text in dark backgrounds #cccccc */
-		--destructive: 0 100% 68%; /* Red for error states and critical actions #ff3b3b */
-		--destructive-foreground: 0 0% 100%; /* White for destructive action text #ffffff */
-		--border: 214 31.8% 30%; /* Darker border #3a4658 */
-		--input: 214 31.8% 30%; /* Darker input background #3a4658 */
-		--ring: 258 100% 63%; /* Dreamy purple for focus rings #7c3aed */
-		--radius: 0.5rem;
-		--chart-1: 48 100% 67%; /* Chart color 1 #ffd700 */
-		--chart-2: 173 58% 39%; /* Chart color 2 #2a9d8f */
-		--chart-3: 197 37% 24%; /* Chart color 3 #264653 */
-		--chart-4: 43 74% 66%; /* Chart color 4 #e9c46a */
-		--chart-5: 27 87% 67%; /* Chart color 5 #f4a261 */
-	}
-}
+  .dark {
+    --background: 220 20% 10%;
+    --foreground: 0 0% 90%;
+    --card: 220 20% 15%;
+    --card-foreground: 0 0% 90%;
+    --popover: 220 20% 15%;
+    --popover-foreground: 0 0% 90%;
+    --primary: 258 100% 63%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 80% 70%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 48 100% 67%;
+    --accent-foreground: 0 0% 20%;
+    --muted: 0 0% 46%;
+    --muted-foreground: 0 0% 80%;
+    --destructive: 0 100% 68%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 214 31.8% 30%;
+    --input: 214 31.8% 30%;
+    --ring: 258 100% 63%;
+    --radius: 0.5rem;
+    --chart-1: 48 100% 67%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+  }
 
-/* Apply base styles using Tailwind's `@apply` directive */
-@layer base {
-	* {
-		@apply border-border;
-	}
-	body {
-		@apply bg-background text-foreground;
-	}
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }
